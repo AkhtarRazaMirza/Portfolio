@@ -36,21 +36,21 @@ export function BrowserFrame({ url, src, alt = "", accent = "#8B5CF6", priority 
       />
 
       {/* macOS Window Chrome Header */}
-      <div className="relative z-10 flex items-center justify-between border-b border-white/[0.06] bg-[#0C0C14]/90 px-4 py-3 backdrop-blur-md">
-        <div className="flex items-center gap-2">
-          <span className="h-3 w-3 rounded-full bg-[#FF5F56]/85 ring-1 ring-black/30 transition-transform duration-300 group-hover:scale-105" />
-          <span className="h-3 w-3 rounded-full bg-[#FFBD2E]/85 ring-1 ring-black/30 transition-transform duration-300 group-hover:scale-105" />
-          <span className="h-3 w-3 rounded-full bg-[#27C93F]/85 ring-1 ring-black/30 transition-transform duration-300 group-hover:scale-105" />
+      <div className="relative z-10 flex items-center justify-between border-b border-white/[0.06] bg-[#0C0C14]/90 px-2.5 py-2 backdrop-blur-md sm:px-4 sm:py-3">
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F56]/85 ring-1 ring-black/30 transition-transform duration-300 group-hover:scale-105 sm:h-3 sm:w-3" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#FFBD2E]/85 ring-1 ring-black/30 transition-transform duration-300 group-hover:scale-105 sm:h-3 sm:w-3" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#27C93F]/85 ring-1 ring-black/30 transition-transform duration-300 group-hover:scale-105 sm:h-3 sm:w-3" />
         </div>
 
         {/* Omnibox SSL Address Pill */}
-        <div className="flex max-w-[280px] flex-1 items-center justify-center gap-2 rounded-full border border-white/[0.06] bg-white/[0.035] px-3.5 py-1 text-center shadow-inner backdrop-blur-sm sm:max-w-md">
-          <Lock className="h-2.5 w-2.5 shrink-0 text-emerald-400" />
-          <span className="truncate font-mono text-[10px] tracking-wide text-zinc-300">{url}</span>
+        <div className="flex max-w-[140px] flex-1 items-center justify-center gap-1.5 rounded-full border border-white/[0.06] bg-white/[0.035] px-2 py-0.5 text-center shadow-inner backdrop-blur-sm sm:max-w-md sm:gap-2 sm:px-3.5 sm:py-1">
+          <Lock className="h-2 w-2 shrink-0 text-emerald-400 sm:h-2.5 sm:w-2.5" />
+          <span className="truncate font-mono text-[9px] tracking-wide text-zinc-300 sm:text-[10px]">{url}</span>
         </div>
 
         <div className="flex items-center justify-end gap-2 text-zinc-500">
-          <RefreshCw className="h-3 w-3 transition-colors duration-300 hover:text-white" />
+          <RefreshCw className="h-2.5 w-2.5 transition-colors duration-300 hover:text-white sm:h-3 sm:w-3" />
         </div>
       </div>
 

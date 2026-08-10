@@ -40,7 +40,7 @@ export default function CaseStudyView({ project: p, next }: { project: Project; 
               Case Study {p.index}
             </Overline>
           </Reveal>
-          <h1 className="mt-8 font-display text-7xl font-semibold leading-[0.9] tracking-[-0.03em] text-white md:text-9xl">
+          <h1 className="mt-8 font-display text-4xl font-semibold leading-[0.9] tracking-[-0.03em] text-white sm:text-7xl md:text-9xl">
             <MaskReveal>{p.name}<span className="text-zinc-500">.</span></MaskReveal>
           </h1>
           <Reveal delay={0.15}>
@@ -50,17 +50,17 @@ export default function CaseStudyView({ project: p, next }: { project: Project; 
               target="_blank"
               rel="noreferrer"
               data-testid="case-live-link"
-              className="group mt-6 inline-flex items-center gap-2 border-b pb-1 font-mono text-xs uppercase tracking-[0.2em] text-white transition-colors duration-300"
+              className="group mt-6 inline-flex max-w-full items-center gap-2 border-b pb-1 font-mono text-xs uppercase tracking-[0.2em] text-white transition-colors duration-300"
               style={{ borderColor: `${p.accent}66` }}
             >
-              Live — {p.url}
-              <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              <span className="truncate">Live — {p.url}</span>
+              <ArrowUpRight className="h-3.5 w-3.5 shrink-0 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
           </Reveal>
         </div>
 
         <Reveal delay={0.2} className="mt-14">
-          <div className="grid grid-cols-2 gap-8 border-y border-white/[0.08] py-8 md:grid-cols-4" data-testid="case-meta">
+          <div className="grid grid-cols-2 gap-4 border-y border-white/[0.08] py-8 sm:gap-8 md:grid-cols-4" data-testid="case-meta">
             <MetaItem label="Role" value={p.role} />
             <MetaItem label="Year" value={p.year} />
             <MetaItem label="Stack" value={p.stack.slice(0, 5).join(" · ")} />
@@ -106,7 +106,7 @@ export default function CaseStudyView({ project: p, next }: { project: Project; 
         <Reveal className="mt-24">
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4" data-testid="case-metrics">
             {p.metrics.map((m) => (
-              <div key={m.label} className="glass-surface glass-surface-hover rounded-2xl p-6 md:p-8">
+              <div key={m.label} className="glass-surface glass-surface-hover rounded-2xl p-4 sm:p-6 md:p-8">
                 <p className="font-display text-3xl font-medium tracking-tight text-white md:text-5xl"><CountUp value={m.value} /></p>
                 <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400">{m.label}</p>
               </div>
@@ -137,7 +137,7 @@ export default function CaseStudyView({ project: p, next }: { project: Project; 
           <div className="lg:col-span-7 space-y-4">
             {p.decisions.map((d, i) => (
               <Reveal key={d.title} delay={i * 0.04}>
-                <div data-testid={`case-decision-${i}`} className="glass-surface glass-surface-hover rounded-2xl p-7 md:p-8">
+                <div data-testid={`case-decision-${i}`} className="glass-surface glass-surface-hover rounded-2xl p-5 sm:p-7 md:p-8">
                   <div className="flex items-center gap-3">
                     <span className="font-mono text-sm font-semibold" style={{ color: p.accent }}>0{i + 1}</span>
                     <h3 className="font-display text-xl font-medium tracking-tight text-white md:text-2xl">{d.title}</h3>
@@ -166,7 +166,7 @@ export default function CaseStudyView({ project: p, next }: { project: Project; 
           <Link href={`/work/${next.slug}`} data-testid="case-next-link" className="group block">
             <Overline>Next case study</Overline>
             <span className="mt-6 flex items-center justify-between gap-6">
-              <span className="font-display text-5xl font-semibold tracking-[-0.02em] text-white transition-transform duration-500 group-hover:translate-x-3 md:text-8xl">
+              <span className="font-display text-3xl font-semibold tracking-[-0.02em] text-white transition-transform duration-500 group-hover:translate-x-3 sm:text-5xl md:text-8xl">
                 {next.name}<span className="text-zinc-500">.</span>
               </span>
               <ArrowRight className="h-8 w-8 shrink-0 text-zinc-500 transition-transform duration-500 group-hover:translate-x-2 group-hover:text-white md:h-12 md:w-12" />

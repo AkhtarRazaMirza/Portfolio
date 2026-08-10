@@ -10,7 +10,7 @@ export default function OpenSource() {
 
       <div className="relative mx-auto max-w-[1600px] px-6 md:px-12 lg:px-24">
         <Reveal className="flex flex-wrap items-end justify-between gap-6">
-          <h2 className="font-display text-4xl font-semibold tracking-[-0.03em] text-white md:text-6xl">
+          <h2 className="font-display text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl md:text-6xl">
             Public by<br /><span className="text-zinc-500">default.</span>
           </h2>
           <Overline>06 — Open Source</Overline>
@@ -24,7 +24,7 @@ export default function OpenSource() {
                 target="_blank"
                 rel="noreferrer"
                 data-testid={`oss-link-${o.name}`}
-                className="glass-surface glass-surface-hover group flex flex-wrap items-center justify-between gap-6 rounded-2xl p-7 md:p-8"
+                className="glass-surface glass-surface-hover group flex flex-wrap items-center justify-between gap-4 rounded-2xl p-5 sm:gap-6 sm:p-7 md:p-8"
               >
                 <div className="flex flex-1 flex-col gap-2 md:flex-row md:items-center md:gap-6">
                   <div className="flex items-center gap-3">

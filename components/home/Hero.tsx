@@ -43,7 +43,7 @@ export default function Hero() {
           <Overline>{identity.name} — {identity.role}</Overline>
         </motion.div>
 
-        <h1 className="mx-auto mt-8 max-w-6xl font-display text-[clamp(3.2rem,8.5vw,8.2rem)] font-semibold leading-[0.94] tracking-[-0.035em] text-white">
+        <h1 className="mx-auto mt-8 max-w-6xl font-display text-[clamp(2.2rem,8.5vw,8.2rem)] font-semibold leading-[0.94] tracking-[-0.035em] text-white">
           <span className="block">
             <WordReveal words={["Software,", "engineered"]} delay={0.15} />
           </span>
@@ -130,7 +130,7 @@ export default function Hero() {
           initial={reduce ? undefined : { opacity: 0, y: 40 }}
           animate={ready ? { opacity: 1, y: 0 } : undefined}
           transition={{ duration: 1.2, delay: 0.9, ease: EASE }}
-          className="relative z-20 mt-6 flex items-start gap-4 md:hidden"
+          className="relative z-20 mt-6 flex items-start gap-2.5 sm:gap-4 md:hidden"
         >
           <div className="w-1/2 -rotate-2">
             <BrowserFrame src={projects[1].shots?.[0]} url={projects[1].url} accent={projects[1].accent} alt="PPT.ai — generate presentations from text" />

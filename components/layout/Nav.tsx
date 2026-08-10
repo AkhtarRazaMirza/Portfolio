@@ -110,7 +110,7 @@ export default function Nav() {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-40 bg-[#030304]/96 backdrop-blur-2xl md:hidden"
           >
-            <nav className="flex h-full flex-col justify-center gap-3 px-8" aria-label="Mobile">
+            <nav className="flex min-h-full flex-col justify-center gap-2 sm:gap-3 overflow-y-auto px-6 py-20 sm:px-8" aria-label="Mobile">
               {navLinks.map((l, i) => (
                 <motion.div
                   key={l.label}
@@ -123,7 +123,7 @@ export default function Nav() {
                     label={l.label}
                     testId={`nav-mobile-link-${l.label.toLowerCase()}`}
                     onNavigate={() => setOpen(false)}
-                    className="block py-3 font-display text-5xl font-medium tracking-tight text-white"
+                    className="block py-2.5 font-display text-3xl font-medium tracking-tight text-white sm:py-3 sm:text-5xl"
                   />
                 </motion.div>
               ))}

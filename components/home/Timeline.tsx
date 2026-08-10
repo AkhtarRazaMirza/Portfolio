@@ -9,7 +9,7 @@ export default function Timeline() {
 
       <div className="relative mx-auto max-w-[1600px] px-6 md:px-12 lg:px-24">
         <Reveal className="flex flex-wrap items-end justify-between gap-6">
-          <h2 className="font-display text-4xl font-semibold tracking-[-0.03em] text-white md:text-6xl">
+          <h2 className="font-display text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl md:text-6xl">
             Six years<br /><span className="text-zinc-500">of shipping.</span>
           </h2>
           <Overline>05 — Trajectory</Overline>
@@ -20,7 +20,7 @@ export default function Timeline() {
             <Reveal key={t.period} delay={i * 0.05} className="h-full">
               <div
                 data-testid={`timeline-entry-${i}`}
-                className="glass-surface glass-surface-hover flex h-full flex-col justify-between rounded-2xl p-7 md:p-8"
+                className="glass-surface glass-surface-hover flex h-full flex-col justify-between rounded-2xl p-5 sm:p-7 md:p-8"
               >
                 <div>
                   <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3.5 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-300 backdrop-blur-md">

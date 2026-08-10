@@ -17,7 +17,7 @@ export default function Flagship() {
           </Overline>
         </Reveal>
 
-        <h2 className="mt-8 text-center font-display text-7xl font-semibold leading-[0.92] tracking-[-0.035em] text-white md:text-9xl">
+        <h2 className="mt-8 text-center font-display text-5xl font-semibold leading-[0.92] tracking-[-0.035em] text-white sm:text-7xl md:text-9xl">
           <MaskReveal inView>Stelix<span className="text-zinc-500">.</span></MaskReveal>
         </h2>
         <Reveal delay={0.1}>
@@ -45,7 +45,7 @@ export default function Flagship() {
             {p.metrics.map((m) => (
               <div
                 key={m.label}
-                className="glass-surface glass-surface-hover rounded-2xl p-6 md:p-8"
+                className="glass-surface glass-surface-hover rounded-2xl p-4 sm:p-6 md:p-8"
                 data-testid={`flagship-metric-${m.label.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`}
               >
                 <p className="font-display text-3xl font-medium tracking-tight text-white md:text-4xl">
@@ -65,17 +65,17 @@ export default function Flagship() {
               </span>
             ))}
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6">
             <a
               href={p.liveUrl}
               target="_blank"
               rel="noreferrer"
               data-testid="flagship-live-link"
-              className="group inline-flex items-center gap-2 border-b pb-1 font-mono text-xs uppercase tracking-[0.2em] text-white transition-colors duration-300"
+              className="group inline-flex max-w-full items-center gap-2 border-b pb-1 font-mono text-xs uppercase tracking-[0.2em] text-white transition-colors duration-300"
               style={{ borderColor: `${p.accent}66` }}
             >
-              Visit live — {p.url}
-              <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+              <span className="truncate">Visit live — {p.url}</span>
+              <ArrowRight className="h-3.5 w-3.5 shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
             <Link
               href={`/work/${p.slug}`}
@@ -83,7 +83,7 @@ export default function Flagship() {
               className="group inline-flex items-center gap-2 border-b border-white/30 pb-1 font-mono text-xs uppercase tracking-[0.2em] text-white transition-colors duration-300 hover:border-white"
             >
               Read case study
-              <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+              <ArrowRight className="h-3.5 w-3.5 shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
         </Reveal>

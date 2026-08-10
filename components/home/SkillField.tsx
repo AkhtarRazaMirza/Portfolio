@@ -67,18 +67,35 @@ export default function SkillField() {
       mouse.x = -9999;
       mouse.y = -9999;
     };
+    const onTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0 && field) {
+        const rect = field.getBoundingClientRect();
+        mouse.x = e.touches[0].clientX - rect.left;
+        mouse.y = e.touches[0].clientY - rect.top;
+      }
+    };
+    const onTouchEnd = () => {
+      mouse.x = -9999;
+      mouse.y = -9999;
+    };
+
     field.addEventListener("mousemove", onMove);
     field.addEventListener("mouseleave", onLeave);
+    field.addEventListener("touchmove", onTouchMove, { passive: true });
+    field.addEventListener("touchend", onTouchEnd, { passive: true });
 
     let raf: number;
     const tick = () => {
       const w = field.clientWidth;
       const h = field.clientHeight;
+      const scale = w < 640 ? 0.55 : w < 1024 ? 0.75 : 1;
+
       balls.forEach((b, i) => {
+        b.r = radiusFor(i) * scale;
         const dx = b.x - mouse.x;
         const dy = b.y - mouse.y;
         const d = Math.hypot(dx, dy);
-        const reach = 140 + b.r;
+        const reach = 120 * scale + b.r;
         if (d < reach && d > 0.1) {
           const force = ((reach - d) / reach) * 0.5;
           b.vx += (dx / d) * force;
@@ -95,7 +112,12 @@ export default function SkillField() {
         if (b.y < b.r) { b.y = b.r; b.vy *= -0.8; }
         if (b.y > h - b.r) { b.y = h - b.r; b.vy *= -0.8; }
         const el = ballsRef.current[i];
-        if (el) el.style.transform = `translate3d(${b.x - b.r}px, ${b.y - b.r}px, 0)`;
+        if (el) {
+          const diameter = b.r * 2;
+          el.style.width = `${diameter}px`;
+          el.style.height = `${diameter}px`;
+          el.style.transform = `translate3d(${b.x - b.r}px, ${b.y - b.r}px, 0)`;
+        }
       });
       raf = requestAnimationFrame(tick);
     };
@@ -105,6 +127,8 @@ export default function SkillField() {
       cancelAnimationFrame(raf);
       field.removeEventListener("mousemove", onMove);
       field.removeEventListener("mouseleave", onLeave);
+      field.removeEventListener("touchmove", onTouchMove);
+      field.removeEventListener("touchend", onTouchEnd);
     };
   }, [reduce]);
 
@@ -114,7 +138,7 @@ export default function SkillField() {
 
       <div className="mx-auto max-w-[1600px] px-6 md:px-12 lg:px-24">
         <Reveal className="flex flex-wrap items-end justify-between gap-6">
-          <h2 className="font-display text-4xl font-semibold tracking-[-0.03em] text-white md:text-6xl">
+          <h2 className="font-display text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl md:text-6xl">
             Tech Stack<br /><span className="text-zinc-500">& primitives.</span>
           </h2>
           <Overline>07 — Capabilities</Overline>
@@ -138,7 +162,7 @@ export default function SkillField() {
                 key={s}
                 data-testid={`skill-ball-${s.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
                 ref={(el) => { ballsRef.current[i] = el; }}
-                className="glass-surface glass-surface-hover absolute left-0 top-0 flex select-none items-center justify-center rounded-full font-mono text-[10px] text-zinc-200 md:text-xs"
+                className="glass-surface glass-surface-hover absolute left-0 top-0 flex select-none items-center justify-center rounded-full font-mono text-[9px] text-zinc-200 sm:text-[10px] md:text-xs"
                 style={{ width: size, height: size, willChange: "transform" }}
               >
                 {s}

@@ -10,7 +10,7 @@ export default function Philosophy() {
       <div className="relative mx-auto max-w-[1600px] px-6 md:px-12 lg:px-24">
         <Reveal className="mx-auto max-w-2xl text-center">
           <Overline>04 — Engineering Philosophy</Overline>
-          <h2 className="mt-6 font-display text-4xl font-semibold leading-[1.02] tracking-[-0.03em] text-white md:text-6xl">
+          <h2 className="mt-6 font-display text-3xl font-semibold leading-[1.02] tracking-[-0.03em] text-white sm:text-4xl md:text-6xl">
             Principles I ship by<span className="text-zinc-500">.</span>
           </h2>
         </Reveal>
@@ -20,7 +20,7 @@ export default function Philosophy() {
             <Reveal key={c.num} className="h-full">
               <div
                 data-testid={`philosophy-chapter-${c.num}`}
-                className="glass-surface glass-surface-hover flex h-full flex-col justify-between rounded-2xl p-8 md:p-10"
+                className="glass-surface glass-surface-hover flex h-full flex-col justify-between rounded-2xl p-6 sm:p-8 md:p-10"
               >
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-500">Principle</span>

@@ -39,7 +39,7 @@ export default function Contact() {
       <div className="relative mx-auto grid max-w-[1600px] gap-16 px-6 md:px-12 lg:grid-cols-12 lg:px-24">
         <div className="lg:col-span-7">
           <Reveal><Overline>08 — Contact</Overline></Reveal>
-          <h2 className="mt-8 font-display text-5xl font-semibold leading-[0.95] tracking-[-0.02em] text-white md:text-7xl">
+          <h2 className="mt-8 font-display text-3xl font-semibold leading-[0.95] tracking-[-0.02em] text-white sm:text-5xl md:text-7xl">
             <MaskReveal inView>Let's build</MaskReveal>
             <MaskReveal inView delay={0.12}><span className="text-zinc-500">something real.</span></MaskReveal>
           </h2>
@@ -52,10 +52,10 @@ export default function Contact() {
             <a
               data-testid="contact-email-link"
               href={`mailto:${identity.email}`}
-              className="group inline-flex items-center gap-3 border-b border-white/30 pb-1 font-mono text-sm text-white transition-colors duration-300 hover:border-white"
+              className="group inline-flex max-w-full items-center gap-3 border-b border-white/30 pb-1 font-mono text-sm text-white transition-colors duration-300 hover:border-white"
             >
-              {identity.email}
-              <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              <span className="break-all sm:break-normal">{identity.email}</span>
+              <ArrowUpRight className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
             <div className="mt-8 flex gap-7 font-mono text-[11px] uppercase tracking-[0.2em] text-zinc-500">
               <a data-testid="contact-github-link" href={identity.github} target="_blank" rel="noreferrer" className="transition-colors duration-300 hover:text-white">GitHub</a>
@@ -66,7 +66,7 @@ export default function Contact() {
 
         <div className="lg:col-span-5">
           <Reveal delay={0.1}>
-            <form onSubmit={submit} data-testid="contact-form" className="glass-surface space-y-6 rounded-2xl p-6 md:p-8">
+            <form onSubmit={submit} data-testid="contact-form" className="glass-surface space-y-6 rounded-2xl p-5 sm:p-6 md:p-8">
               <div className="space-y-2">
                 <label htmlFor="contact-name" className={labelClass}>Name</label>
                 <input
