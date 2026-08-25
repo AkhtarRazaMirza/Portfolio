@@ -133,14 +133,42 @@ export default function CaseStudyView({ project: p, next }: { project: Project; 
         <div className="mt-28 grid gap-12 lg:grid-cols-12">
           <Reveal className="lg:col-span-4">
             <div className="lg:sticky lg:top-28">
-              <Overline>Architecture</Overline>
+              <Overline>Architecture & Boundaries</Overline>
               <p className="mt-5 max-w-xs font-light leading-relaxed text-zinc-400">
-                Every box is a decision. The notes are why.
+                Frontend, backend, and data boundaries engineered for reliability and type safety.
               </p>
             </div>
           </Reveal>
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 space-y-10">
             <ArchitectureDiagram layers={p.architecture} />
+
+            {/* Data Flow & Request Lifecycle Pipeline */}
+            {p.dataFlow && p.dataFlow.length > 0 && (
+              <Reveal delay={0.1}>
+                <div data-testid="case-dataflow" className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5 sm:p-7 md:p-8">
+                  <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-zinc-400">
+                    <span className="h-1.5 w-1.5 rounded-full" style={{ background: p.accent }} />
+                    Data Flow & Request Lifecycle
+                  </div>
+                  <div className="mt-6 space-y-4">
+                    {p.dataFlow.map((step) => (
+                      <div key={step.step} className="flex items-start gap-4">
+                        <span
+                          className="flex h-6 w-6 shrink-0 items-center justify-center rounded border border-white/10 bg-white/[0.04] font-mono text-[10px] font-semibold"
+                          style={{ color: p.accent }}
+                        >
+                          {step.step}
+                        </span>
+                        <div className="min-w-0 flex-1">
+                          <p className="font-mono text-xs font-medium text-zinc-200">{step.label}</p>
+                          <p className="mt-1 text-sm font-light leading-relaxed text-zinc-400">{step.detail}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </Reveal>
+            )}
           </div>
         </div>
 
@@ -148,22 +176,92 @@ export default function CaseStudyView({ project: p, next }: { project: Project; 
           <Reveal className="lg:col-span-4">
             <div className="lg:sticky lg:top-28">
               <Overline>Engineering Decisions</Overline>
+              <p className="mt-5 max-w-xs font-light leading-relaxed text-zinc-400">
+                Architectural choices, rationale, and system trade-offs.
+              </p>
             </div>
           </Reveal>
-          <div className="lg:col-span-7 space-y-4">
-            {p.decisions.map((d, i) => (
-              <Reveal key={d.title} delay={i * 0.04}>
-                <div data-testid={`case-decision-${i}`} className="glass-surface glass-surface-hover rounded-2xl p-5 sm:p-7 md:p-8">
-                  <div className="flex items-center gap-3">
-                    <span className="font-mono text-sm font-semibold" style={{ color: p.accent }}>0{i + 1}</span>
-                    <h3 className="font-display text-xl font-medium tracking-tight text-white md:text-2xl">{d.title}</h3>
+          <div className="lg:col-span-7 space-y-6">
+            <div className="space-y-4">
+              {p.decisions.map((d, i) => (
+                <Reveal key={d.title} delay={i * 0.04}>
+                  <div data-testid={`case-decision-${i}`} className="glass-surface glass-surface-hover rounded-2xl p-5 sm:p-7 md:p-8">
+                    <div className="flex items-center gap-3">
+                      <span className="font-mono text-sm font-semibold" style={{ color: p.accent }}>0{i + 1}</span>
+                      <h3 className="font-display text-xl font-medium tracking-tight text-white md:text-2xl">{d.title}</h3>
+                    </div>
+                    <p className="mt-4 font-light leading-relaxed text-zinc-400">{d.body}</p>
                   </div>
-                  <p className="mt-4 font-light leading-relaxed text-zinc-400">{d.body}</p>
+                </Reveal>
+              ))}
+            </div>
+
+            {/* Architectural Trade-offs */}
+            {p.tradeOffs && p.tradeOffs.length > 0 && (
+              <Reveal delay={0.1}>
+                <div data-testid="case-tradeoffs" className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5 sm:p-7 md:p-8">
+                  <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-zinc-400">
+                    <span className="h-1.5 w-1.5 rounded-full" style={{ background: p.accent }} />
+                    Architectural Trade-offs
+                  </div>
+                  <div className="mt-6 space-y-5">
+                    {p.tradeOffs.map((t, idx) => (
+                      <div key={idx} className="space-y-2">
+                        <p className="font-display text-base font-medium text-white">{t.decision}</p>
+                        <div className="grid gap-3 sm:grid-cols-2 text-xs font-light leading-relaxed">
+                          <div className="rounded-lg border border-emerald-500/20 bg-emerald-500/[0.03] p-3 text-zinc-300">
+                            <span className="font-mono text-[10px] uppercase tracking-wider text-emerald-400 block mb-1">Advantage</span>
+                            {t.pros}
+                          </div>
+                          <div className="rounded-lg border border-amber-500/20 bg-amber-500/[0.03] p-3 text-zinc-300">
+                            <span className="font-mono text-[10px] uppercase tracking-wider text-amber-400 block mb-1">Consideration</span>
+                            {t.cons}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </Reveal>
-            ))}
+            )}
           </div>
         </div>
+
+        {/* Technical Challenges & Solutions (When present) */}
+        {p.challenges && p.challenges.length > 0 && (
+          <div className="mt-28 grid gap-12 lg:grid-cols-12">
+            <Reveal className="lg:col-span-4">
+              <div className="lg:sticky lg:top-28">
+                <Overline>Technical Challenges</Overline>
+                <p className="mt-5 max-w-xs font-light leading-relaxed text-zinc-400">
+                  Concrete implementation hurdles encountered and resolved in code.
+                </p>
+              </div>
+            </Reveal>
+            <div className="lg:col-span-7 space-y-4">
+              {p.challenges.map((c, i) => (
+                <Reveal key={i} delay={i * 0.04}>
+                  <div data-testid={`case-challenge-${i}`} className="glass-surface glass-surface-hover rounded-2xl p-5 sm:p-7 md:p-8 space-y-4">
+                    <div>
+                      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500">Challenge</span>
+                      <p className="mt-1 font-display text-lg font-medium text-zinc-200">{c.challenge}</p>
+                    </div>
+                    <div className="border-t border-white/[0.06] pt-3">
+                      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500">Approach</span>
+                      <p className="mt-1 text-sm font-light leading-relaxed text-zinc-400">{c.approach}</p>
+                    </div>
+                    {c.result && (
+                      <div className="border-t border-white/[0.06] pt-3">
+                        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-emerald-400">Result</span>
+                        <p className="mt-1 text-sm font-light leading-relaxed text-zinc-300">{c.result}</p>
+                      </div>
+                    )}
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="mt-28">
           <Reveal><Overline className="text-center">What It Taught Me</Overline></Reveal>

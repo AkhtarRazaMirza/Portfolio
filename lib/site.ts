@@ -9,6 +9,24 @@ export interface ArchitectureLayer {
   note: string;
 }
 
+export interface DataFlowStep {
+  step: string;
+  label: string;
+  detail: string;
+}
+
+export interface TechnicalChallenge {
+  challenge: string;
+  approach: string;
+  result?: string;
+}
+
+export interface TradeOff {
+  decision: string;
+  pros: string;
+  cons: string;
+}
+
 export interface Decision {
   title: string;
   body: string;
@@ -33,7 +51,10 @@ export interface Project {
   overview: string[];
   metrics: Metric[];
   architecture: ArchitectureLayer[];
+  dataFlow?: DataFlowStep[];
   decisions: Decision[];
+  challenges?: TechnicalChallenge[];
+  tradeOffs?: TradeOff[];
   lessons: string[];
 }
 
@@ -95,26 +116,40 @@ export const projects: Project[] = [
     year: "2024",
     role: "Full-Stack Developer",
     status: "Completed · Full-Stack SaaS",
-    stack: ["TypeScript", "React", "tRPC", "PostgreSQL", "Turborepo", "Tailwind CSS"],
-    highlights: ["Turborepo monorepo", "Type-safe tRPC APIs", "PostgreSQL database", "Authentication & dashboard", "7 major features"],
+    stack: ["TypeScript", "React", "tRPC", "PostgreSQL", "Drizzle ORM", "Turborepo", "Tailwind CSS"],
+    highlights: ["Turborepo monorepo", "Type-safe tRPC APIs", "PostgreSQL & Drizzle ORM", "Authentication & dashboard", "7 major features"],
     overview: [
-      "Form Engine is a Typeform-inspired full-stack form builder built in a Turborepo monorepo with type-safe tRPC communication.",
-      "Engineered across the full product lifecycle: frontend, backend APIs, PostgreSQL database schema, user authentication, interactive question canvas, and a response management dashboard across 7 major features.",
+      "Form Engine is a Typeform-inspired full-stack SaaS form builder engineered in a Turborepo monorepo with end-to-end type-safe tRPC communication.",
+      "Built across the complete product lifecycle: dynamic interactive question canvas, response ingestion pipeline, PostgreSQL database schema with Drizzle ORM, user authentication, and a response management dashboard across 7 major features.",
     ],
     metrics: [
       { value: "1", label: "Turborepo monorepo" },
       { value: "tRPC", label: "type-safe communication" },
       { value: "7", label: "major features" },
-      { value: "PostgreSQL", label: "database architecture" },
+      { value: "Drizzle", label: "PostgreSQL ORM" },
     ],
     architecture: [
-      { name: "Monorepo Workspace", nodes: ["Turborepo", "TypeScript"], note: "Unified monorepo setup managing shared packages, configurations, and applications with strict typing." },
-      { name: "API & Data Layer", nodes: ["tRPC router", "PostgreSQL"], note: "End-to-end type safety connecting React client components directly to backend procedures and PostgreSQL." },
-      { name: "Application Features", nodes: ["Form builder", "Dashboard", "Auth"], note: "Interactive question canvas, user authentication, and response management dashboard across 7 major features." },
+      { name: "Monorepo Workspace", nodes: ["Turborepo", "TypeScript"], note: "Unified monorepo setup managing shared packages (UI, schemas, API routers) with cached builds." },
+      { name: "Client Layer", nodes: ["React", "Form Builder Canvas", "Live Preview"], note: "Dynamic question editor with real-time preview, reordering, and form configuration state." },
+      { name: "API & Protocol", nodes: ["tRPC Router", "Zod Validation"], note: "End-to-end type safety connecting React client components directly to backend procedures without REST contract drift." },
+      { name: "Data & Persistence", nodes: ["PostgreSQL", "Drizzle ORM", "Auth"], note: "Relational persistence for user accounts, form schemas, field configurations, and submitted response records." },
+    ],
+    dataFlow: [
+      { step: "01", label: "Builder State", detail: "User creates or modifies form questions on the React canvas; local state syncs with Zod schema definitions." },
+      { step: "02", label: "Type-Safe RPC", detail: "tRPC mutations transmit structured updates to backend procedures with compile-time type validation." },
+      { step: "03", label: "Relational Storage", detail: "Drizzle ORM executes type-safe queries against PostgreSQL to persist form structures and responses." },
+      { step: "04", label: "Response Ingestion", detail: "Public submissions validate field rules and update aggregate metrics on the creator dashboard." },
     ],
     decisions: [
-      { title: "End-to-end type safety with tRPC over manual REST contracts", body: "Utilized tRPC to achieve compile-time type validation between the React frontend and Node backend, eliminating API contract drift across the monorepo." },
-      { title: "Turborepo monorepo architecture", body: "Organized the application into modular workspace packages for the form engine, shared UI components, and API routers to ensure maintainability and fast build caching." },
+      { title: "End-to-end type safety with tRPC over manual REST contracts", body: "Utilized tRPC to achieve compile-time type validation between the React frontend and Node backend procedures. Any form schema modification immediately flags type mismatches across the entire workspace." },
+      { title: "Turborepo monorepo package isolation", body: "Organized the application into modular workspace packages for the form engine core, shared UI components, and API routers, improving code maintainability and build caching." },
+      { title: "Relational PostgreSQL schema with Drizzle ORM", body: "Modeled forms, question fields, user accounts, and responses relationally to enforce referential integrity and support efficient aggregation queries." },
+    ],
+    challenges: [
+      { challenge: "Preventing schema drift between the interactive form builder canvas and server-side validation.", approach: "Created a shared validation package with Zod schemas used identically by client-side form controls and backend tRPC route handlers.", result: "Shared validation keeps the builder and server aligned around the same schema definitions." },
+    ],
+    tradeOffs: [
+      { decision: "Turborepo & tRPC monorepo architecture", pros: "Compile-time type validation across client and server with unified code sharing.", cons: "Requires strict workspace build orchestration compared to isolated single-repo micro-apps." },
     ],
     lessons: [
       "Shared types across the full stack drastically reduce runtime integration errors.",
@@ -136,8 +171,8 @@ export const projects: Project[] = [
     stack: ["Next.js", "React", "TypeScript", "Express", "PostgreSQL", "Prisma", "Pinecone", "OpenAI"],
     highlights: ["Multi-source processing", "AI Q&A with citations", "Vector search with Pinecone", "Learning artifacts generation", "Prisma & PostgreSQL"],
     overview: [
-      "Chaibook is a NotebookLM-style research and learning workspace for working with documents, websites, YouTube sources, and text.",
-      "Implements source processing, vector search with Pinecone, AI question answering with grounded citations, research workflows, and generated learning artifacts.",
+      "Chaibook is a NotebookLM-style research and learning workspace designed for working with documents, websites, YouTube sources, and text.",
+      "Implements multi-source ingestion, vector indexing in Pinecone, AI question answering with grounded citations, research workflows, and generated learning artifacts.",
     ],
     metrics: [
       { value: "4", label: "source types (Docs, Web, YouTube, Text)" },
@@ -146,14 +181,27 @@ export const projects: Project[] = [
       { value: "Prisma", label: "PostgreSQL ORM" },
     ],
     architecture: [
-      { name: "Source Ingestion", nodes: ["Documents", "Websites", "YouTube", "Text"], note: "Multi-modal source ingestion pipeline parsing text content for vector embedding and retrieval." },
-      { name: "Vector & Storage", nodes: ["Pinecone", "PostgreSQL", "Prisma"], note: "Vector index storing source embeddings alongside relational metadata in PostgreSQL via Prisma." },
-      { name: "AI Intelligence", nodes: ["OpenAI API", "Citation Engine"], note: "Retrieval-based AI answering user queries grounded in uploaded sources with exact citation references." },
-      { name: "Client Workspace", nodes: ["Next.js", "React", "TypeScript"], note: "Interactive learning workspace for researching sources and generating structured study artifacts." },
+      { name: "Source Ingestion", nodes: ["PDF Documents", "Web URLs", "YouTube Transcripts", "Raw Text"], note: "Heterogeneous ingestion pipeline normalizing multi-modal sources into clean text for chunking." },
+      { name: "Vector Indexing", nodes: ["OpenAI Embeddings", "Pinecone Vector DB"], note: "High-dimensional vector storage indexing semantic source chunks for similarity retrieval." },
+      { name: "Relational Metadata", nodes: ["PostgreSQL", "Prisma ORM", "Express API"], note: "Relational persistence managing workspaces, source metadata, document statuses, and user notes." },
+      { name: "AI Synthesis & Artifacts", nodes: ["RAG Engine", "OpenAI API", "Citations", "Study Guides"], note: "Context-augmented prompt synthesis with grounded citation markers, generating flashcards and summaries." },
+    ],
+    dataFlow: [
+      { step: "01", label: "Source Ingestion", detail: "Documents, websites, YouTube media, and notes are extracted, cleaned, and split into semantic text chunks." },
+      { step: "02", label: "Vector & Relational Storage", detail: "OpenAI embeddings are saved to Pinecone while document metadata is recorded in PostgreSQL via Prisma." },
+      { step: "03", label: "Context Retrieval (RAG)", detail: "User research queries generate vector embeddings to retrieve semantically relevant source chunks from Pinecone." },
+      { step: "04", label: "Grounded Synthesis", detail: "OpenAI synthesizes verified answers with bracketed source citations and generates structured learning artifacts." },
     ],
     decisions: [
-      { title: "Retrieval-based AI with grounded citations over raw generation", body: "Designed question answering to retrieve relevant source chunks from Pinecone and require grounded citations, ensuring answers can be cross-referenced with uploaded materials." },
-      { title: "Multi-source ingestion architecture", body: "Built dedicated extractors for documents, web links, and YouTube content to unify disparate learning materials into a single searchable workspace." },
+      { title: "Retrieval-Augmented Generation (RAG) with grounded citations over raw generation", body: "Designed question answering to retrieve relevant source chunks from Pinecone and require grounded citations, ensuring answers can be verified against uploaded sources." },
+      { title: "Hybrid storage architecture (Pinecone + PostgreSQL / Prisma)", body: "Separated vector similarity indexing (Pinecone) from structured relational entities like workspaces, source metadata, and user study notes (PostgreSQL with Prisma)." },
+      { title: "Multi-source extraction normalization", body: "Built dedicated extractors for documents, web links, and YouTube content to normalize disparate learning materials into a uniform chunking and embedding pipeline." },
+    ],
+    challenges: [
+      { challenge: "Ingesting heterogeneous sources (PDFs, web pages, YouTube transcripts) without degrading vector search quality.", approach: "Constructed format-specific extractors that strip noise and normalize text before chunking and embedding generation.", result: "Consistent vector representations in Pinecone across all four source types." },
+    ],
+    tradeOffs: [
+      { decision: "Dedicated external vector store (Pinecone) alongside relational PostgreSQL", pros: "High-performance vector similarity search without the overhead of self-hosting and managing native vector extensions.", cons: "Introduces an external service boundary and requires synchronization between vector IDs and relational document IDs." },
     ],
     lessons: [
       "Grounded citations make AI answers useful for research rather than generic hallucination.",
@@ -185,18 +233,26 @@ export const projects: Project[] = [
       { value: "2", label: "Google integrations" },
       { value: "3", label: "core features" },
       { value: "1", label: "unified assistant" },
-      { value: "Scoped", label: "Google OAuth 2.0 security" },
+      { value: "Scoped", label: "Google OAuth 2.0 access" },
     ],
     architecture: [
       { name: "Client & UI", nodes: ["Next.js web app", "Tailwind"], note: "Unified conversational surface for managing email and calendar schedules without context switching." },
-      { name: "Identity & Security", nodes: ["Google OAuth 2.0"], note: "Scoped connections to Gmail and Calendar — zero credential storage on application servers." },
+      { name: "Identity & Security", nodes: ["Google OAuth 2.0"], note: "Authentication is delegated to Google OAuth rather than storing application passwords." },
       { name: "API Integrations", nodes: ["Gmail API", "Google Calendar API", "Node.js"], note: "Reading, organizing, and summarizing mail; tracking meetings and schedule events." },
       { name: "Intelligence & Data", nodes: ["LLM assistant", "PostgreSQL"], note: "Natural language in, real actions and summaries out; persistent state in PostgreSQL." },
     ],
+    dataFlow: [
+      { step: "01", label: "OAuth Handshake", detail: "User authenticates via Google OAuth 2.0 with minimal required Gmail and Calendar permission scopes." },
+      { step: "02", label: "API Sync", detail: "Backend services query Gmail API for unread threads and Calendar API for schedule timelines." },
+      { step: "03", label: "LLM Processing", detail: "AI assistant extracts key action items, generates email triage summaries, and identifies schedule conflicts." },
+      { step: "04", label: "Workspace Render", detail: "Conversational UI displays Smart Inbox summaries and upcoming calendar commitments in a unified view." },
+    ],
     decisions: [
-      { title: "One assistant over three tools", body: "Email, calendar and planning usually live in separate apps. Stelix integrates both through one conversational workspace to eliminate tab switching." },
-      { title: "OAuth scopes over credentials", body: "Google OAuth 2.0 with scoped access means the product never touches a password, and users can revoke access from their Google account at any time. Security as a feature, not a footnote." },
-      { title: "Summaries as the default inbox view", body: "The Smart Inbox doesn't just list mail — it reads, organizes and summarizes, so triage takes seconds. The assistant earns its place before the user ever types a command." },
+      { title: "Scoped Google OAuth 2.0 authentication", body: "Delegated authentication to scoped Google OAuth so permissions can be managed and revoked directly through Google without storing application passwords." },
+      { title: "Unified conversational workflow over tab switching", body: "Integrated email triage and calendar schedules into a single conversational pane, eliminating fragmented context switching between standalone apps." },
+    ],
+    tradeOffs: [
+      { decision: "Scoped OAuth token architecture", pros: "Delegates authentication to Google OAuth rather than managing application passwords.", cons: "Requires proactive token refresh handling and rate-limit backoff against Google API quotas." },
     ],
     lessons: [
       "Integrations are the product — the assistant is only as good as what it connects to.",
@@ -228,16 +284,25 @@ export const projects: Project[] = [
       { value: "5+", label: "presentation templates" },
       { value: "20+", label: "presentation capabilities" },
       { value: "2", label: "OAuth providers" },
-      { value: "0", label: "passwords stored" },
+      { value: "OAuth", label: "passwordless sign-in" },
     ],
     architecture: [
       { name: "Client & Editor", nodes: ["Next.js web app", "Slide editor"], note: "Light and focused on a single job: prompt in, structured deck out." },
-      { name: "Identity", nodes: ["GitHub OAuth", "Google OAuth"], note: "Passwordless sign-in — no credentials to leak, nothing to reset." },
+      { name: "Identity", nodes: ["GitHub OAuth", "Google OAuth"], note: "Passwordless sign-in delegating authentication to GitHub and Google OAuth providers." },
       { name: "Intelligence & Templates", nodes: ["AI text-to-deck generation", "5+ templates"], note: "Natural-language prompts become structured, presentable slides with 20+ capabilities." },
     ],
+    dataFlow: [
+      { step: "01", label: "Topic Prompt", detail: "User enters presentation topic or outline; client validates prompt constraints." },
+      { step: "02", label: "JSON Slide Generation", detail: "AI prompt engine structures the topic into a standardized JSON slide hierarchy." },
+      { step: "03", label: "Template Layout", detail: "Renderer applies selected template styling, typography hierarchy, and visual structure." },
+      { step: "04", label: "Interactive Editor", detail: "User edits slide content, switches templates, and presents the generated deck." },
+    ],
     decisions: [
-      { title: "Passwordless from day one", body: "GitHub and Google OAuth cover virtually every developer and knowledge worker the product serves. Zero passwords stored means zero credential breaches — and sign-in takes one click." },
-      { title: "One job, done well", body: "The landing page is the sign-in page. PPT.ai doesn't sell ten features; it promises one outcome — presentations from text — and removes everything between the visitor and that outcome." },
+      { title: "Structured JSON slide schema over freeform HTML generation", body: "Constrained AI output to a strict JSON slide schema to separate raw content generation from presentation rendering, preventing broken layouts." },
+      { title: "Passwordless OAuth authentication", body: "Integrated GitHub and Google OAuth for fast onboarding without managing local password credentials." },
+    ],
+    tradeOffs: [
+      { decision: "Constrained slide template engine", pros: "Provides consistent typography and structural layout across generated presentation decks.", cons: "Limits arbitrary freeform canvas drawing in favor of structured reliability." },
     ],
     lessons: [
       "Focus is a feature — one clear promise beats ten vague ones.",
@@ -274,16 +339,24 @@ export const projects: Project[] = [
       { name: "Client", nodes: ["Next.js web app", "Tailwind CSS"], note: "Responsive, mobile-optimized public portal with fast imagery and booking CTAs." },
       { name: "Content & CMS", nodes: ["Admin dashboard", "PostgreSQL", "Drizzle ORM"], note: "Complete management of 50+ packages, itineraries, testimonials, and gallery content without code changes." },
       { name: "Integration", nodes: ["WhatsApp deep links", "Inquiry workflows"], note: "Pre-filled inquiry messaging routing leads directly to agency representatives." },
-      { name: "Performance", nodes: ["Redis caching", "Image optimization"], note: "Cached package listings and optimized image pipeline for quick mobile load times." },
+      { name: "Performance", nodes: ["Redis caching", "Image optimization"], note: "Cached package listings and optimized image pipeline for responsive media loading." },
+    ],
+    dataFlow: [
+      { step: "01", label: "Package Browsing", detail: "Visitors explore dynamic itineraries served from Redis-cached PostgreSQL queries." },
+      { step: "02", label: "Inquiry Generation", detail: "Selecting a package generates pre-filled itinerary and date parameters for WhatsApp deep linking." },
+      { step: "03", label: "Direct Agency Lead", detail: "Agency staff receive inquiry messages directly on WhatsApp for immediate customer communication." },
+      { step: "04", label: "CMS Updates", detail: "Staff update package pricing, dates, and media via the admin dashboard without deployments." },
     ],
     decisions: [
-      { title: "Direct WhatsApp booking over friction-heavy forms", body: "For high-stakes pilgrimage travel, clients prefer direct human conversations. Every package inquiry pre-populates trip details directly into WhatsApp for immediate conversion." },
       { title: "Custom CMS for non-technical agency staff", body: "Designed an admin dashboard allowing agency managers to create, edit, and update 50+ seasonal packages and pricing in real time without developer intervention." },
-      { title: "Performance-first mobile experience", body: "Most pilgrims and families browse on mobile devices. Optimized the media pipeline and query caching to maintain fast load times across high-resolution imagery." },
+      { title: "Redis query caching", body: "Implemented Redis caching for frequently accessed package catalog queries." },
+    ],
+    tradeOffs: [
+      { decision: "WhatsApp deep linking over multi-step checkout forms", pros: "Keeps the inquiry flow aligned with the agency's existing direct human consultation workflow.", cons: "Offloads booking state and payment finalization to agency staff communication." },
     ],
     lessons: [
       "Client platforms must be simple for non-technical administrators to operate.",
-      "Meeting users on familiar channels (WhatsApp) drives faster conversions than cold forms.",
+      "Meeting users on familiar channels (WhatsApp) simplifies customer inquiries compared to standalone contact forms.",
       "Strong data modeling with Drizzle and PostgreSQL simplifies complex multi-package itineraries.",
     ],
   },
