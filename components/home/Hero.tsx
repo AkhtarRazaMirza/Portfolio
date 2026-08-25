@@ -33,6 +33,10 @@ export default function Hero() {
     parX.set((e.clientX - r.left) / r.width - 0.5);
   };
 
+  const stelixProject = projects.find((p) => p.slug === "stelix") ?? projects[0];
+  const pptProject = projects.find((p) => p.slug === "ppt-ai") ?? projects[1];
+  const anemsProject = projects.find((p) => p.slug === "anems-travels") ?? projects[2];
+
   return (
     <section ref={ref} onMouseMove={onMove} data-testid="hero-section" className="relative z-10 overflow-hidden pb-24 pt-36 md:pt-48">
       {/* Volumetric Radial Light Spotlight behind Hero */}
@@ -79,11 +83,13 @@ export default function Hero() {
           </Magnetic>
           <Magnetic strength={0.25}>
             <a
-              data-testid="hero-cta-contact"
-              href="#contact"
+              data-testid="hero-cta-resume"
+              href={identity.resumeUrl}
+              target="_blank"
+              rel="noreferrer"
               className="group inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/[0.03] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.15em] text-white backdrop-blur-md transition-[border-color,background-color,transform] duration-200 hover:border-white/50 hover:bg-white/[0.08] active:scale-[0.97]"
             >
-              Let's talk
+              Resume
               <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
           </Magnetic>
@@ -93,7 +99,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={ready ? { opacity: 1 } : undefined}
           transition={{ duration: 1, delay: 0.88 }}
-          className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 font-mono text-[11px] uppercase tracking-[0.2em] text-zinc-500"
+          className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 font-mono text-[11px] uppercase tracking-[0.2em] text-zinc-400"
         >
           <span className="flex items-center gap-2.5" data-testid="hero-availability">
             <span className="relative flex h-2 w-2">
@@ -102,6 +108,24 @@ export default function Hero() {
             </span>
             {identity.availability}
           </span>
+          <a
+            data-testid="hero-github-link"
+            href={identity.github}
+            target="_blank"
+            rel="noreferrer"
+            className="transition-colors duration-200 hover:text-white"
+          >
+            GitHub
+          </a>
+          <a
+            data-testid="hero-linkedin-link"
+            href={identity.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            className="transition-colors duration-200 hover:text-white"
+          >
+            LinkedIn
+          </a>
           <span>{identity.location}</span>
           <span className="hidden md:inline">BCA 2024–2027</span>
         </motion.div>
@@ -120,7 +144,7 @@ export default function Hero() {
         >
           <motion.div style={{ y: mockY }}>
             <motion.div style={{ rotateX, rotateY, x: centerX, transformStyle: "preserve-3d" }}>
-              <ProductMockup slug="stelix" url={projects[0].url} shot={projects[0].shots?.[0]} accent={projects[0].accent} priority />
+              <ProductMockup slug={stelixProject.slug} url={stelixProject.url} shot={stelixProject.shots?.[0]} accent={stelixProject.accent} priority />
             </motion.div>
           </motion.div>
         </motion.div>
@@ -133,10 +157,10 @@ export default function Hero() {
           className="relative z-20 mt-6 flex items-start gap-2.5 sm:gap-4 md:hidden"
         >
           <div className="w-1/2 -rotate-2">
-            <BrowserFrame src={projects[1].shots?.[0]} url={projects[1].url} accent={projects[1].accent} alt="PPT.ai — generate presentations from text" />
+            <BrowserFrame src={pptProject.shots?.[0]} url={pptProject.url} accent={pptProject.accent} alt="PPT.ai — generate presentations from text" />
           </div>
           <div className="mt-6 w-1/2 rotate-2">
-            <BrowserFrame src={projects[2].shots?.[0]} url={projects[2].url} accent={projects[2].accent} alt="AIMS Tours — client travel platform" />
+            <BrowserFrame src={anemsProject.shots?.[0]} url={anemsProject.url} accent={anemsProject.accent} alt="AIMS Tours — client travel platform" />
           </div>
         </motion.div>
 
@@ -153,7 +177,7 @@ export default function Hero() {
               transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
               style={{ rotate: -3 }}
             >
-              <BrowserFrame src={projects[1].shots?.[0]} url={projects[1].url} accent={projects[1].accent} alt="PPT.ai — generate presentations from text" />
+              <BrowserFrame src={pptProject.shots?.[0]} url={pptProject.url} accent={pptProject.accent} alt="PPT.ai — generate presentations from text" />
             </motion.div>
           </motion.div>
         </motion.div>
@@ -171,7 +195,7 @@ export default function Hero() {
               transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
               style={{ rotate: 2 }}
             >
-              <BrowserFrame src={projects[2].shots?.[0]} url={projects[2].url} accent={projects[2].accent} alt="AIMS Tours — client travel platform" />
+              <BrowserFrame src={anemsProject.shots?.[0]} url={anemsProject.url} accent={anemsProject.accent} alt="AIMS Tours — client travel platform" />
             </motion.div>
           </motion.div>
         </motion.div>

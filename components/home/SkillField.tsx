@@ -5,11 +5,10 @@ import { useReducedMotion } from "framer-motion";
 import { Overline, Reveal } from "@/components/primitives";
 
 const SKILLS = [
-  "Next.js", "React", "TypeScript", "Node.js", "Express.js", "REST API",
-  "PostgreSQL", "Drizzle ORM", "MongoDB", "Redis", "Better Auth", "Clerk",
-  "JWT", "Zod", "OpenAI API", "Resend", "Tailwind CSS", "Framer Motion",
-  "shadcn/ui", "JavaScript", "HTML5", "CSS3", "Docker", "Git",
-  "GitHub", "Vercel", "VS Code",
+  "Next.js", "React", "TypeScript", "Node.js", "Express.js",
+  "PostgreSQL", "Prisma", "Drizzle ORM", "tRPC", "Redis",
+  "Docker", "OpenAI API", "Tailwind CSS", "Better Auth", "Zod",
+  "MongoDB", "JavaScript", "Git", "GitHub", "Vercel", "VS Code",
 ];
 
 const LARGEST_SKILLS = new Set([
@@ -17,8 +16,7 @@ const LARGEST_SKILLS = new Set([
 ]);
 
 const MEDIUM_SKILLS = new Set([
-  "Express.js", "Drizzle ORM", "MongoDB", "Redis", "Better Auth", "Clerk",
-  "OpenAI API", "Resend", "shadcn/ui",
+  "Express.js", "Prisma", "Drizzle ORM", "tRPC", "Docker", "OpenAI API", "Tailwind CSS", "Redis", "Better Auth",
 ]);
 
 const radiusFor = (i: number) => {

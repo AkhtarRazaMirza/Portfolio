@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { EASE } from "@/components/primitives";
-import { navLinks } from "@/lib/site";
+import { identity, navLinks } from "@/lib/site";
 
 interface NavAnchorProps {
   href: string;
@@ -82,6 +82,16 @@ export default function Nav() {
               Available for Roles
             </div>
 
+            <a
+              href={identity.resumeUrl}
+              target="_blank"
+              rel="noreferrer"
+              data-testid="nav-cta-resume"
+              className="hidden rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.15em] text-zinc-300 backdrop-blur-md transition-[background-color,color,border-color,transform] duration-200 hover:border-white/30 hover:bg-white/[0.08] hover:text-white sm:inline-flex items-center gap-1"
+            >
+              Resume
+            </a>
+
             <NavAnchor
               href="/#contact"
               label="Let's Talk"
@@ -127,6 +137,32 @@ export default function Nav() {
                   />
                 </motion.div>
               ))}
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 + navLinks.length * 0.07, duration: 0.6, ease: EASE }}
+              >
+                <a
+                  href={identity.resumeUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  data-testid="nav-mobile-resume"
+                  onClick={() => setOpen(false)}
+                  className="block py-2.5 font-display text-3xl font-medium tracking-tight text-zinc-300 sm:py-3 sm:text-5xl hover:text-white"
+                >
+                  Resume ↗
+                </a>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.45, duration: 0.6 }}
+                className="mt-6 flex flex-wrap gap-5 border-t border-white/[0.08] pt-6 font-mono text-xs uppercase tracking-widest text-zinc-400"
+              >
+                <a href={identity.github} target="_blank" rel="noreferrer" className="hover:text-white">GitHub</a>
+                <a href={identity.linkedin} target="_blank" rel="noreferrer" className="hover:text-white">LinkedIn</a>
+                <a href={`mailto:${identity.email}`} className="hover:text-white">Email</a>
+              </motion.div>
             </nav>
           </motion.div>
         )}

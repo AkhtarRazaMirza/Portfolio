@@ -18,10 +18,12 @@ export interface Project {
   slug: string;
   index: string;
   name: string;
-  url: string;
-  liveUrl: string;
+  type: string;
+  url?: string;
+  liveUrl?: string;
+  githubUrl?: string;
   accent: string;
-  shots: string[];
+  shots?: string[];
   tagline: string;
   year: string;
   role: string;
@@ -59,9 +61,10 @@ export const identity = {
   role: "Full Stack Developer",
   email: "akhtarrazamirza111@gmail.com",
   github: "https://github.com/AkhtarRazaMirza",
-  linkedin: "https://www.linkedin.com/in/akhtar-raza-800001302",
+  linkedin: "https://www.linkedin.com/in/akhtarraza-dev",
   location: "India · Remote",
   availability: "Available for full-stack roles & internships",
+  resumeUrl: "/Akhtar_Raza_Resume.pdf",
 };
 
 export const navLinks = [
@@ -82,37 +85,116 @@ export const marqueeItems = [
 
 export const projects: Project[] = [
   {
-    slug: "stelix",
+    slug: "form-engine",
     index: "01",
+    name: "Form Engine",
+    type: "Full-Stack SaaS",
+    githubUrl: "https://github.com/AkhtarRazaMirza/Form-Engine",
+    accent: "#8B5CF6",
+    tagline: "Typeform-inspired full-stack form builder with type-safe tRPC communication.",
+    year: "2024",
+    role: "Full-Stack Developer",
+    status: "Completed · Full-Stack SaaS",
+    stack: ["TypeScript", "React", "tRPC", "PostgreSQL", "Turborepo", "Tailwind CSS"],
+    highlights: ["Turborepo monorepo", "Type-safe tRPC APIs", "PostgreSQL database", "Authentication & dashboard", "7 major features"],
+    overview: [
+      "Form Engine is a Typeform-inspired full-stack form builder built in a Turborepo monorepo with type-safe tRPC communication.",
+      "Engineered across the full product lifecycle: frontend, backend APIs, PostgreSQL database schema, user authentication, interactive question canvas, and a response management dashboard across 7 major features.",
+    ],
+    metrics: [
+      { value: "1", label: "Turborepo monorepo" },
+      { value: "tRPC", label: "type-safe communication" },
+      { value: "7", label: "major features" },
+      { value: "PostgreSQL", label: "database architecture" },
+    ],
+    architecture: [
+      { name: "Monorepo Workspace", nodes: ["Turborepo", "TypeScript"], note: "Unified monorepo setup managing shared packages, configurations, and applications with strict typing." },
+      { name: "API & Data Layer", nodes: ["tRPC router", "PostgreSQL"], note: "End-to-end type safety connecting React client components directly to backend procedures and PostgreSQL." },
+      { name: "Application Features", nodes: ["Form builder", "Dashboard", "Auth"], note: "Interactive question canvas, user authentication, and response management dashboard across 7 major features." },
+    ],
+    decisions: [
+      { title: "End-to-end type safety with tRPC over manual REST contracts", body: "Utilized tRPC to achieve compile-time type validation between the React frontend and Node backend, eliminating API contract drift across the monorepo." },
+      { title: "Turborepo monorepo architecture", body: "Organized the application into modular workspace packages for the form engine, shared UI components, and API routers to ensure maintainability and fast build caching." },
+    ],
+    lessons: [
+      "Shared types across the full stack drastically reduce runtime integration errors.",
+      "Monorepo tooling with Turborepo keeps full-stack SaaS projects organized as they scale.",
+      "Form builders require careful state management for dynamic field configurations.",
+    ],
+  },
+  {
+    slug: "chaibook",
+    index: "02",
+    name: "Chaibook",
+    type: "AI Research Workspace",
+    githubUrl: "https://github.com/AkhtarRazaMirza/NoteBook-ML",
+    accent: "#06B6D4",
+    tagline: "NotebookLM-style research and learning workspace with multi-source retrieval and citations.",
+    year: "2024",
+    role: "Full-Stack & AI Developer",
+    status: "Completed · AI Workspace",
+    stack: ["Next.js", "React", "TypeScript", "Express", "PostgreSQL", "Prisma", "Pinecone", "OpenAI"],
+    highlights: ["Multi-source processing", "AI Q&A with citations", "Vector search with Pinecone", "Learning artifacts generation", "Prisma & PostgreSQL"],
+    overview: [
+      "Chaibook is a NotebookLM-style research and learning workspace for working with documents, websites, YouTube sources, and text.",
+      "Implements source processing, vector search with Pinecone, AI question answering with grounded citations, research workflows, and generated learning artifacts.",
+    ],
+    metrics: [
+      { value: "4", label: "source types (Docs, Web, YouTube, Text)" },
+      { value: "Pinecone", label: "vector retrieval" },
+      { value: "OpenAI", label: "citation-grounded Q&A" },
+      { value: "Prisma", label: "PostgreSQL ORM" },
+    ],
+    architecture: [
+      { name: "Source Ingestion", nodes: ["Documents", "Websites", "YouTube", "Text"], note: "Multi-modal source ingestion pipeline parsing text content for vector embedding and retrieval." },
+      { name: "Vector & Storage", nodes: ["Pinecone", "PostgreSQL", "Prisma"], note: "Vector index storing source embeddings alongside relational metadata in PostgreSQL via Prisma." },
+      { name: "AI Intelligence", nodes: ["OpenAI API", "Citation Engine"], note: "Retrieval-based AI answering user queries grounded in uploaded sources with exact citation references." },
+      { name: "Client Workspace", nodes: ["Next.js", "React", "TypeScript"], note: "Interactive learning workspace for researching sources and generating structured study artifacts." },
+    ],
+    decisions: [
+      { title: "Retrieval-based AI with grounded citations over raw generation", body: "Designed question answering to retrieve relevant source chunks from Pinecone and require grounded citations, ensuring answers can be cross-referenced with uploaded materials." },
+      { title: "Multi-source ingestion architecture", body: "Built dedicated extractors for documents, web links, and YouTube content to unify disparate learning materials into a single searchable workspace." },
+    ],
+    lessons: [
+      "Grounded citations make AI answers useful for research rather than generic hallucination.",
+      "Clean chunking and metadata handling in Pinecone are critical for accurate multi-source retrieval.",
+      "Prisma and PostgreSQL provide reliable metadata management alongside external vector stores.",
+    ],
+  },
+  {
+    slug: "stelix",
+    index: "03",
     name: "Stelix",
+    type: "AI Productivity Platform",
     url: "stelix.akhtarraza.in",
     liveUrl: "https://stelix.akhtarraza.in/",
+    githubUrl: "https://github.com/AkhtarRazaMirza/stelix",
     accent: "#5B8CFF",
     shots: ["/assets/products/shot-stelix-1.jpeg", "/assets/products/shot-stelix-2.jpeg"],
     tagline: "Your AI command center — Gmail and Google Calendar, managed through one intelligent assistant.",
     year: "2025 — Present",
-    role: "Design & Full Stack",
-    status: "Live · in production",
-    stack: ["Next.js", "React", "Google OAuth 2.0", "Gmail API", "Calendar API", "LLM", "Tailwind"],
+    role: "Full-Stack Developer",
+    status: "Live · Deployed",
+    stack: ["Next.js", "React", "TypeScript", "Node.js", "PostgreSQL", "Gmail API", "Calendar API", "Tailwind"],
     highlights: ["Natural-language assistant", "Smart Inbox summaries", "Calendar intelligence", "Scoped Google OAuth"],
     overview: [
-      "Stelix is an AI productivity platform: connect Gmail and Google Calendar, then manage your workflow through one intelligent assistant. Instead of switching between inbox, calendar and to-do apps, you ask Stelix — it reads, organizes and summarizes your messages and keeps every meeting in view.",
+      "Stelix is a unified productivity workspace combining Gmail and Google Calendar workflows into one application.",
       "Three features carry the product: an AI Assistant that handles email and calendar through natural language, a Smart Inbox that reads, organizes and summarizes Gmail, and Calendar Intelligence that tracks meetings and upcoming events in one place.",
     ],
     metrics: [
       { value: "2", label: "Google integrations" },
       { value: "3", label: "core features" },
-      { value: "1", label: "assistant for everything" },
-      { value: "4", label: "steps to done" },
+      { value: "1", label: "unified assistant" },
+      { value: "Scoped", label: "Google OAuth 2.0 security" },
     ],
     architecture: [
-      { name: "Client", nodes: ["Next.js web app"], note: "A single conversational surface for email and calendar — no tab switching." },
-      { name: "Identity", nodes: ["Google OAuth 2.0"], note: "Scoped connections to Gmail and Calendar — Stelix never sees a password." },
-      { name: "Integrations", nodes: ["Gmail API", "Google Calendar API"], note: "Reading, organizing and summarizing mail; tracking meetings and events." },
-      { name: "Intelligence", nodes: ["LLM assistant", "Inbox summarization"], note: "Natural language in, real actions and summaries out." },
+      { name: "Client & UI", nodes: ["Next.js web app", "Tailwind"], note: "Unified conversational surface for managing email and calendar schedules without context switching." },
+      { name: "Identity & Security", nodes: ["Google OAuth 2.0"], note: "Scoped connections to Gmail and Calendar — zero credential storage on application servers." },
+      { name: "API Integrations", nodes: ["Gmail API", "Google Calendar API", "Node.js"], note: "Reading, organizing, and summarizing mail; tracking meetings and schedule events." },
+      { name: "Intelligence & Data", nodes: ["LLM assistant", "PostgreSQL"], note: "Natural language in, real actions and summaries out; persistent state in PostgreSQL." },
     ],
     decisions: [
-      { title: "One assistant over three tools", body: "Email, calendar and planning usually live in separate apps. Stelix bet on a single conversational surface: connect Gmail, connect Calendar, ask Stelix, get work done — that four-step flow is the entire onboarding." },
+      { title: "One assistant over three tools", body: "Email, calendar and planning usually live in separate apps. Stelix integrates both through one conversational workspace to eliminate tab switching." },
       { title: "OAuth scopes over credentials", body: "Google OAuth 2.0 with scoped access means the product never touches a password, and users can revoke access from their Google account at any time. Security as a feature, not a footnote." },
       { title: "Summaries as the default inbox view", body: "The Smart Inbox doesn't just list mail — it reads, organizes and summarizes, so triage takes seconds. The assistant earns its place before the user ever types a command." },
     ],
@@ -124,32 +206,34 @@ export const projects: Project[] = [
   },
   {
     slug: "ppt-ai",
-    index: "02",
+    index: "04",
     name: "PPT.ai",
+    type: "AI Presentation Platform",
     url: "ppt.akhtarraza.in",
     liveUrl: "https://ppt.akhtarraza.in/",
+    githubUrl: "https://github.com/AkhtarRazaMirza/Ai-Ppt-genrator",
     accent: "#FB923C",
     shots: ["/assets/products/shot-ppt-1.jpeg"],
     tagline: "Generate presentations from text.",
     year: "2024",
-    role: "Design & Full Stack",
-    status: "Live",
-    stack: ["Next.js", "React", "AI generation", "GitHub OAuth", "Google OAuth", "Tailwind"],
-    highlights: ["Text-to-deck generation", "Passwordless sign-in", "GitHub + Google OAuth"],
+    role: "Full-Stack Developer",
+    status: "Live · Deployed",
+    stack: ["Next.js", "React", "TypeScript", "AI generation", "GitHub OAuth", "Google OAuth", "Tailwind"],
+    highlights: ["Text-to-deck generation", "5+ templates", "20+ presentation capabilities", "Passwordless sign-in"],
     overview: [
-      "PPT.ai generates presentations from text — describe what you need and get a beautiful deck instead of a blank slide. The product is deliberately focused: sign in, say what the presentation is about, and let the AI do the layout work.",
-      "Access is passwordless by design: creators sign in with GitHub or Google and land straight in the product. No forms, no friction between an idea and its first draft.",
+      "PPT.ai generates presentations from text — describe what you need and get a structured deck instead of a blank slide. The product is deliberately focused: sign in, describe the presentation topic, and let the AI do the layout work.",
+      "Includes a presentation editor, 5+ customizable templates, 20+ presentation capabilities, and passwordless authentication with GitHub and Google OAuth.",
     ],
     metrics: [
-      { value: "1", label: "prompt to a deck" },
+      { value: "5+", label: "presentation templates" },
+      { value: "20+", label: "presentation capabilities" },
       { value: "2", label: "OAuth providers" },
       { value: "0", label: "passwords stored" },
-      { value: "1-click", label: "sign-in" },
     ],
     architecture: [
-      { name: "Client", nodes: ["Next.js web app"], note: "Light and focused on a single job: prompt in, deck out." },
+      { name: "Client & Editor", nodes: ["Next.js web app", "Slide editor"], note: "Light and focused on a single job: prompt in, structured deck out." },
       { name: "Identity", nodes: ["GitHub OAuth", "Google OAuth"], note: "Passwordless sign-in — no credentials to leak, nothing to reset." },
-      { name: "Intelligence", nodes: ["AI text-to-deck generation"], note: "Natural-language prompts become structured, presentable slides." },
+      { name: "Intelligence & Templates", nodes: ["AI text-to-deck generation", "5+ templates"], note: "Natural-language prompts become structured, presentable slides with 20+ capabilities." },
     ],
     decisions: [
       { title: "Passwordless from day one", body: "GitHub and Google OAuth cover virtually every developer and knowledge worker the product serves. Zero passwords stored means zero credential breaches — and sign-in takes one click." },
@@ -163,8 +247,9 @@ export const projects: Project[] = [
   },
   {
     slug: "anems-travels",
-    index: "03",
+    index: "05",
     name: "AIMS Tours",
+    type: "Freelance Client Platform",
     url: "aimstravels.in",
     liveUrl: "https://aimstravels.in/",
     accent: "#34D399",

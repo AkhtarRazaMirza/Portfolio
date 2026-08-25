@@ -45,17 +45,33 @@ export default function CaseStudyView({ project: p, next }: { project: Project; 
           </h1>
           <Reveal delay={0.15}>
             <p className="mx-auto mt-7 max-w-2xl text-xl font-light text-zinc-400 md:text-2xl">{p.tagline}</p>
-            <a
-              href={p.liveUrl}
-              target="_blank"
-              rel="noreferrer"
-              data-testid="case-live-link"
-              className="group mt-6 inline-flex max-w-full items-center gap-2 border-b pb-1 font-mono text-xs uppercase tracking-[0.2em] text-white transition-colors duration-300"
-              style={{ borderColor: `${p.accent}66` }}
-            >
-              <span className="truncate">Live — {p.url}</span>
-              <ArrowUpRight className="h-3.5 w-3.5 shrink-0 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </a>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+              {p.liveUrl && (
+                <a
+                  href={p.liveUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  data-testid="case-live-link"
+                  className="group inline-flex max-w-full items-center gap-2 border-b pb-1 font-mono text-xs uppercase tracking-[0.2em] text-white transition-colors duration-300"
+                  style={{ borderColor: `${p.accent}66` }}
+                >
+                  <span className="truncate">Live — {p.url || p.name}</span>
+                  <ArrowUpRight className="h-3.5 w-3.5 shrink-0 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </a>
+              )}
+              {p.githubUrl && (
+                <a
+                  href={p.githubUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  data-testid="case-github-link"
+                  className="group inline-flex max-w-full items-center gap-2 border-b border-white/30 pb-1 font-mono text-xs uppercase tracking-[0.2em] text-zinc-300 transition-colors duration-300 hover:border-white hover:text-white"
+                >
+                  <span>GitHub Source</span>
+                  <ArrowUpRight className="h-3.5 w-3.5 shrink-0 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </a>
+              )}
+            </div>
           </Reveal>
         </div>
 

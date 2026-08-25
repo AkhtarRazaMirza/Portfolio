@@ -57,7 +57,8 @@ export default function Contact() {
               <span className="break-all sm:break-normal">{identity.email}</span>
               <ArrowUpRight className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
-            <div className="mt-8 flex gap-7 font-mono text-[11px] uppercase tracking-[0.2em] text-zinc-500">
+            <div className="mt-8 flex flex-wrap gap-x-7 gap-y-3 font-mono text-[11px] uppercase tracking-[0.2em] text-zinc-400">
+              <a data-testid="contact-resume-link" href={identity.resumeUrl} target="_blank" rel="noreferrer" className="transition-colors duration-300 hover:text-white">Resume ↗</a>
               <a data-testid="contact-github-link" href={identity.github} target="_blank" rel="noreferrer" className="transition-colors duration-300 hover:text-white">GitHub</a>
               <a data-testid="contact-linkedin-link" href={identity.linkedin} target="_blank" rel="noreferrer" className="transition-colors duration-300 hover:text-white">LinkedIn</a>
             </div>
