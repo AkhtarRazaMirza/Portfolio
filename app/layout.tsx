@@ -4,6 +4,7 @@ import "./globals.css";
 import Providers from "@/components/layout/Providers";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
+import { identity } from "@/lib/site";
 
 const clashDisplay = localFont({
   src: [
@@ -30,25 +31,75 @@ const jetbrainsMono = localFont({
   display: "swap",
 });
 
+const rawUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+const siteUrl = rawUrl && rawUrl.length > 0 ? rawUrl.replace(/\/+$/, "") : "https://www.akhtarraza.in";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
-  title: "Akhtar Raza — Full Stack Developer",
-  description: "Akhtar Raza — Full Stack Developer. I design and engineer production-grade software products.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Akhtar Raza — Full-Stack Developer",
+    template: "%s | Akhtar Raza",
+  },
+  description:
+    "Akhtar Raza — Full-Stack Developer and BCA student building full-stack web applications with React, Next.js, TypeScript, Node.js, and PostgreSQL.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
-    title: "Akhtar Raza — Full Stack Developer",
-    description: "Software, engineered like a product. Stelix · PPT.ai · AIMS Tours.",
+    locale: "en_US",
+    url: "/",
+    siteName: "Akhtar Raza",
+    title: "Akhtar Raza — Full-Stack Developer",
+    description:
+      "Akhtar Raza — Full-Stack Developer and BCA student building full-stack web applications with React, Next.js, TypeScript, Node.js, and PostgreSQL.",
   },
-  twitter: { card: "summary_large_image" },
+  twitter: {
+    card: "summary_large_image",
+    title: "Akhtar Raza — Full-Stack Developer",
+    description:
+      "Akhtar Raza — Full-Stack Developer and BCA student building full-stack web applications with React, Next.js, TypeScript, Node.js, and PostgreSQL.",
+  },
 };
 
 export const viewport: Viewport = {
   themeColor: "#050505",
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#person`,
+      name: identity.name,
+      jobTitle: identity.role,
+      url: `${siteUrl}/`,
+      sameAs: [identity.github, identity.linkedin],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: `${siteUrl}/`,
+      name: "Akhtar Raza — Full-Stack Developer",
+      description:
+        "Portfolio of Akhtar Raza, Full-Stack Developer and BCA student building full-stack web applications.",
+      publisher: {
+        "@id": `${siteUrl}/#person`,
+      },
+    },
+  ],
+};
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`${clashDisplay.variable} ${generalSans.variable} ${jetbrainsMono.variable}`}>
         <a
           href="#main-content"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
@@ -47,6 +47,20 @@ function NavAnchor({ href, label, className, testId, onNavigate }: NavAnchorProp
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [open]);
 
   return (
     <>
@@ -103,6 +117,8 @@ export default function Nav() {
               data-testid="nav-menu-button"
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+              aria-controls="mobile-nav"
               className="relative z-50 text-white md:hidden"
             >
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -120,7 +136,7 @@ export default function Nav() {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-40 bg-[#030304]/96 backdrop-blur-2xl md:hidden"
           >
-            <nav className="flex min-h-full flex-col justify-center gap-2 sm:gap-3 overflow-y-auto px-6 py-20 sm:px-8" aria-label="Mobile">
+            <nav id="mobile-nav" className="flex min-h-full flex-col justify-center gap-2 sm:gap-3 overflow-y-auto px-6 py-20 sm:px-8" aria-label="Mobile">
               {navLinks.map((l, i) => (
                 <motion.div
                   key={l.label}

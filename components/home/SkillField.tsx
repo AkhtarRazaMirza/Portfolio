@@ -82,8 +82,14 @@ export default function SkillField() {
     field.addEventListener("touchmove", onTouchMove, { passive: true });
     field.addEventListener("touchend", onTouchEnd, { passive: true });
 
-    let raf: number;
+    let raf: number = 0;
+    let isVisible = true;
+
     const tick = () => {
+      if (!isVisible) {
+        raf = 0;
+        return;
+      }
       const w = field.clientWidth;
       const h = field.clientHeight;
       const scale = w < 640 ? 0.55 : w < 1024 ? 0.75 : 1;
@@ -119,10 +125,25 @@ export default function SkillField() {
       });
       raf = requestAnimationFrame(tick);
     };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          isVisible = entry.isIntersecting;
+          if (isVisible && !raf) {
+            raf = requestAnimationFrame(tick);
+          }
+        });
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(field);
+
     raf = requestAnimationFrame(tick);
 
     return () => {
-      cancelAnimationFrame(raf);
+      observer.disconnect();
+      if (raf) cancelAnimationFrame(raf);
       field.removeEventListener("mousemove", onMove);
       field.removeEventListener("mouseleave", onLeave);
       field.removeEventListener("touchmove", onTouchMove);

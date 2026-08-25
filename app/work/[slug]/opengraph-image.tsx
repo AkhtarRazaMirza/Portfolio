@@ -51,7 +51,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", color: "#52525b", fontSize: 24, letterSpacing: 4, textTransform: "uppercase" }}>
           <span>{p.url || p.type || p.name}</span>
-          <span>Full Stack Developer</span>
+          <span>Full-Stack Developer</span>
         </div>
       </div>
     ),

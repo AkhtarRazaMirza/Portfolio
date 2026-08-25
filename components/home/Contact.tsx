@@ -21,9 +21,18 @@ export default function Contact() {
 
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const trimmed = {
+      name: form.name.trim(),
+      email: form.email.trim(),
+      message: form.message.trim(),
+    };
+    if (!trimmed.name || !trimmed.email || !trimmed.message) {
+      toast.error("Please fill in all required fields.");
+      return;
+    }
     setSending(true);
     try {
-      await axios.post(`${API}/contact`, form);
+      await axios.post(`${API}/contact`, trimmed);
       toast.success("Message sent. I reply within 24 hours.");
       setForm({ name: "", email: "", message: "" });
     } catch {
@@ -67,13 +76,16 @@ export default function Contact() {
 
         <div className="lg:col-span-5">
           <Reveal delay={0.1}>
-            <form onSubmit={submit} data-testid="contact-form" className="glass-surface space-y-6 rounded-2xl p-5 sm:p-6 md:p-8">
+            <form onSubmit={submit} data-testid="contact-form" aria-busy={sending} className="glass-surface space-y-6 rounded-2xl p-5 sm:p-6 md:p-8">
               <div className="space-y-2">
                 <label htmlFor="contact-name" className={labelClass}>Name</label>
                 <input
                   id="contact-name"
                   data-testid="contact-name-input"
                   required
+                  aria-required="true"
+                  autoComplete="name"
+                  disabled={sending}
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   placeholder="Your name"
@@ -87,6 +99,9 @@ export default function Contact() {
                   data-testid="contact-email-input"
                   required
                   type="email"
+                  aria-required="true"
+                  autoComplete="email"
+                  disabled={sending}
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   placeholder="you@company.com"
@@ -99,7 +114,9 @@ export default function Contact() {
                   id="contact-message"
                   data-testid="contact-message-input"
                   required
+                  aria-required="true"
                   rows={4}
+                  disabled={sending}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   placeholder="Tell me about the product you're building."
@@ -110,6 +127,7 @@ export default function Contact() {
                 data-testid="contact-submit-button"
                 type="submit"
                 disabled={sending}
+                aria-live="polite"
                 className="w-full rounded-full bg-white py-4 font-mono text-[11px] uppercase tracking-[0.15em] text-black transition-[background-color,transform] duration-200 hover:bg-zinc-300 active:scale-[0.98] disabled:opacity-50"
               >
                 {sending ? "Sending…" : "Send message"}

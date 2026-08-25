@@ -62,6 +62,7 @@ export function BrowserFrame({ url = "", src, alt = "", accent = "#8B5CF6", prio
             alt={alt}
             width={1920}
             height={1080}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
             priority={priority}
             loading={priority ? undefined : "lazy"}
             className="block h-auto w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.015]"

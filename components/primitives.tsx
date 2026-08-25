@@ -138,13 +138,14 @@ export function CountUp({ value }: { value: string }) {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-10% 0px" });
-  const match = value.match(/^(\d+(?:\.\d+)?)(.*)$/);
-  const [display, setDisplay] = useState(match ? "0" : value);
+  const initialMatch = value.match(/^(\d+(?:\.\d+)?)(.*)$/);
+  const [display, setDisplay] = useState(initialMatch ? "0" : value);
 
   useEffect(() => {
-    if (!match || !inView || reduce) return;
-    const target = parseFloat(match[1]);
-    const decimals = match[1].includes(".") ? 1 : 0;
+    const m = value.match(/^(\d+(?:\.\d+)?)(.*)$/);
+    if (!m || !inView || reduce) return;
+    const target = parseFloat(m[1]);
+    const decimals = m[1].includes(".") ? 1 : 0;
     const start = performance.now();
     const duration = 1400;
     let raf: number;
@@ -156,13 +157,13 @@ export function CountUp({ value }: { value: string }) {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [inView, reduce, match]);
+  }, [inView, reduce, value]);
 
-  if (!match) return <span>{value}</span>;
+  if (!initialMatch) return <span>{value}</span>;
   return (
     <span ref={ref}>
       {display}
-      {match[2]}
+      {initialMatch[2]}
     </span>
   );
 }

@@ -13,6 +13,7 @@ export default function CursorGlow() {
 
   useEffect(() => {
     if (reduce) return;
+    if (typeof window !== "undefined" && !window.matchMedia("(pointer: fine)").matches) return;
     const move = (e: MouseEvent) => {
       x.set(e.clientX);
       y.set(e.clientY);

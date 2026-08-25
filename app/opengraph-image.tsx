@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Akhtar Raza — Full Stack Developer";
+export const alt = "Akhtar Raza — Full-Stack Developer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -32,18 +32,20 @@ export default function Image() {
         />
         <div style={{ display: "flex", alignItems: "center", gap: 16, color: "#71717a", fontSize: 26, letterSpacing: 6, textTransform: "uppercase" }}>
           <div style={{ width: 12, height: 12, borderRadius: 9999, background: "#5B8CFF" }} />
-          Akhtar Raza — Full Stack Developer
+          Akhtar Raza — Full-Stack Developer
         </div>
         <div style={{ display: "flex", flexDirection: "column", fontSize: 118, fontWeight: 600, letterSpacing: -4, lineHeight: 1.02 }}>
           <span style={{ color: "white" }}>Software, engineered</span>
           <span style={{ color: "#52525b" }}>like a product.</span>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", color: "#52525b", fontSize: 24, letterSpacing: 4, textTransform: "uppercase" }}>
-          <span>Stelix · PPT.ai · AIMS Tours</span>
-          <span style={{ display: "flex", gap: 12 }}>
-            <span style={{ width: 14, height: 14, borderRadius: 9999, background: "#5B8CFF" }} />
-            <span style={{ width: 14, height: 14, borderRadius: 9999, background: "#FB923C" }} />
-            <span style={{ width: 14, height: 14, borderRadius: 9999, background: "#34D399" }} />
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", color: "#52525b", fontSize: 19, letterSpacing: 3, textTransform: "uppercase" }}>
+          <span>Form Engine · Chaibook · Stelix · PPT.ai · AIMS Tours</span>
+          <span style={{ display: "flex", gap: 10 }}>
+            <span style={{ width: 12, height: 12, borderRadius: 9999, background: "#8B5CF6" }} />
+            <span style={{ width: 12, height: 12, borderRadius: 9999, background: "#06B6D4" }} />
+            <span style={{ width: 12, height: 12, borderRadius: 9999, background: "#5B8CFF" }} />
+            <span style={{ width: 12, height: 12, borderRadius: 9999, background: "#FB923C" }} />
+            <span style={{ width: 12, height: 12, borderRadius: 9999, background: "#34D399" }} />
           </span>
         </div>
       </div>

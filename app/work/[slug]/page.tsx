@@ -11,9 +11,29 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
   if (!project) return {};
+
+  const title = `${project.name} — ${project.type}`;
+  const description = project.tagline;
+  const canonicalUrl = `/work/${project.slug}`;
+
   return {
-    title: `${project.name} — Akhtar Raza`,
-    description: project.tagline,
+    title,
+    description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      type: "article",
+      title: `${title} | Akhtar Raza`,
+      description,
+      url: canonicalUrl,
+      siteName: "Akhtar Raza",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} | Akhtar Raza`,
+      description,
+    },
   };
 }
 
