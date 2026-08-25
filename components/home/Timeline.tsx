@@ -10,9 +10,9 @@ export default function Timeline() {
       <div className="relative mx-auto max-w-[1600px] px-6 md:px-12 lg:px-24">
         <Reveal className="flex flex-wrap items-end justify-between gap-6">
           <h2 className="font-display text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl md:text-6xl">
-            Six years<br /><span className="text-zinc-500">of shipping.</span>
+            Experience &<br /><span className="text-zinc-500">trajectory.</span>
           </h2>
-          <Overline>05 — Trajectory</Overline>
+          <Overline>05 — Experience & Education</Overline>
         </Reveal>
 
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

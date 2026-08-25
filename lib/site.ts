@@ -60,8 +60,8 @@ export const identity = {
   email: "akhtarrazamirza111@gmail.com",
   github: "https://github.com/AkhtarRazaMirza",
   linkedin: "https://www.linkedin.com/in/akhtar-raza-800001302",
-  location: "India · Remote US hours",
-  availability: "Available for senior roles — Q3 2026",
+  location: "India · Remote",
+  availability: "Available for full-stack roles & internships",
 };
 
 export const navLinks = [
@@ -169,37 +169,37 @@ export const projects: Project[] = [
     liveUrl: "https://aimstravels.in/",
     accent: "#34D399",
     shots: ["/assets/products/shot-anems-1.jpeg", "/assets/products/shot-anems-2.jpeg"],
-    tagline: "Premium Hajj, Umrah & Ziyarat travel — every sacred journey deserves trusted guidance.",
-    year: "2024 — Present",
-    role: "Design & Full Stack",
-    status: "Live · 10,000+ pilgrims served",
-    stack: ["Next.js", "React", "Tailwind", "WhatsApp deep links", "Google Reviews", "Admin CMS"],
-    highlights: ["WhatsApp-first conversion", "Admin-managed packages", "SEO-rich destination pages", "Skip-to-content accessibility"],
+    tagline: "Full-stack pilgrimage travel platform built for a real agency client.",
+    year: "2024",
+    role: "Freelance Full-Stack Developer",
+    status: "Live · Client Platform",
+    stack: ["Next.js", "React", "Tailwind", "PostgreSQL", "Drizzle ORM", "Redis", "WhatsApp API", "Admin CMS"],
+    highlights: ["50+ packages managed", "Admin CMS dashboard", "WhatsApp booking flow", "SEO-optimized pages"],
     overview: [
-      "AIMS Tours is a premium pilgrimage travel platform for Hajj, Umrah and Ziyarat — built to feel as calm and cared-for as the journeys it sells. Fifteen years of hospitality-led service, more than ten thousand pilgrims guided, and a 4.9-star Google rating across 1,200+ reviews.",
-      "The site carries real business weight: curated packages, destination showcases from Makkah to Dubai, verified testimonials, a team directory, compliance credentials and a pilgrim gallery — all managed through an admin dashboard, all converting through WhatsApp.",
+      "Built as a freelance full-stack client project for AIMS Tours, a pilgrimage travel agency with 15+ years of hospitality service and 10,000+ pilgrims guided.",
+      "Engineered the complete platform end-to-end: a high-performance public website, an admin dashboard managing 50+ dynamic travel packages, booking and inquiry workflows with WhatsApp deep links, and structured destination pages.",
     ],
     metrics: [
-      { value: "15+", label: "years of service" },
-      { value: "10K+", label: "pilgrims guided" },
-      { value: "4.9★", label: "Google rating · 1,200+ reviews" },
-      { value: "24/7", label: "dedicated support" },
+      { value: "50+", label: "travel packages" },
+      { value: "1", label: "admin CMS dashboard" },
+      { value: "WhatsApp", label: "direct inquiry flow" },
+      { value: "Full-Stack", label: "client platform" },
     ],
     architecture: [
-      { name: "Client", nodes: ["Next.js pages", "Optimized image pipeline"], note: "Photography-led design with responsive, optimized images keeping it fast on real networks." },
-      { name: "Content", nodes: ["Admin dashboard CMS"], note: "Packages, destinations, testimonials and gallery entries are content-managed — no deploys for updates." },
-      { name: "Conversion", nodes: ["WhatsApp deep links", "Click-to-call"], note: "Every CTA opens a conversation with context pre-filled — no forms, no dead ends." },
-      { name: "Trust", nodes: ["Google Reviews", "Maps verification"], note: "Real ratings and a verifiable business presence, surfaced where decisions happen." },
+      { name: "Client", nodes: ["Next.js web app", "Tailwind CSS"], note: "Responsive, mobile-optimized public portal with fast imagery and booking CTAs." },
+      { name: "Content & CMS", nodes: ["Admin dashboard", "PostgreSQL", "Drizzle ORM"], note: "Complete management of 50+ packages, itineraries, testimonials, and gallery content without code changes." },
+      { name: "Integration", nodes: ["WhatsApp deep links", "Inquiry workflows"], note: "Pre-filled inquiry messaging routing leads directly to agency representatives." },
+      { name: "Performance", nodes: ["Redis caching", "Image optimization"], note: "Cached package listings and optimized image pipeline for quick mobile load times." },
     ],
     decisions: [
-      { title: "WhatsApp-first over contact forms", body: "The audience books sacred, high-stakes travel — they want a human, not a form. Every call-to-action deep-links into WhatsApp with a pre-filled message, and replies arrive in minutes. Forms filter people out; conversations convert them." },
-      { title: "Content-managed everything", body: "Packages, destinations, testimonials and gallery photos all live behind an admin dashboard. The business updates the site without touching code — seasonal packages and pricing changes ship in minutes." },
-      { title: "Photography as the premium signal, performance as the budget", body: "The design is carried by real imagery from Makkah, Madinah and handpicked hotels. Every image ships through the optimizer at responsive sizes, so the site stays fast on the phones pilgrims actually use." },
+      { title: "Direct WhatsApp booking over friction-heavy forms", body: "For high-stakes pilgrimage travel, clients prefer direct human conversations. Every package inquiry pre-populates trip details directly into WhatsApp for immediate conversion." },
+      { title: "Custom CMS for non-technical agency staff", body: "Designed an admin dashboard allowing agency managers to create, edit, and update 50+ seasonal packages and pricing in real time without developer intervention." },
+      { title: "Performance-first mobile experience", body: "Most pilgrims and families browse on mobile devices. Optimized the media pipeline and query caching to maintain fast load times across high-resolution imagery." },
     ],
     lessons: [
-      "Trust is the conversion strategy — ratings, faces and credentials sell the journey.",
-      "Meet customers where they already are; for this audience, that's WhatsApp.",
-      "A CMS is a business feature, not a technical convenience.",
+      "Client platforms must be simple for non-technical administrators to operate.",
+      "Meeting users on familiar channels (WhatsApp) drives faster conversions than cold forms.",
+      "Strong data modeling with Drizzle and PostgreSQL simplifies complex multi-package itineraries.",
     ],
   },
 ];
@@ -207,19 +207,51 @@ export const projects: Project[] = [
 export const philosophy: Chapter[] = [
   { num: "01", title: "Software is a product, not a project.", body: "Projects end. Products compound. I build for the second commit, the hundredth deploy, and the user who arrives a year from now." },
   { num: "02", title: "Architecture is a promise.", body: "Every boundary I draw is a promise about how the system will change. I choose boring technology deliberately, so the product is allowed to be interesting." },
-  { num: "03", title: "Performance is a feature.", body: "Speed is the first thing a user feels and the last thing a team budgets for. I measure it like revenue — because it is." },
+  { num: "03", title: "Performance is a feature.", body: "Speed is the first thing a user feels and the last thing a team budgets for. I measure and optimize load times, interaction fidelity, and rendering efficiency deliberately." },
   { num: "04", title: "Details compound.", body: "A hairline border, a 120ms ease, a well-named function. None of them matter alone. Together they are the difference between software and craft." },
 ];
 
 export const timeline: TimelineEntry[] = [
-  { period: "2025 — Now", role: "Founding Engineer", org: "Stelix", note: "Designing and building a deployment intelligence platform from zero to production." },
-  { period: "2023 — 2025", role: "Senior Full Stack Engineer", org: "B2B SaaS · US, remote", note: "Led product engineering for an analytics suite — architecture, shipping cadence and the design system." },
-  { period: "2021 — 2023", role: "Full Stack Engineer", org: "Fintech", note: "Built payment flows and internal tooling processing millions in monthly volume." },
-  { period: "2019 — 2021", role: "Engineer", org: "Agencies & early products", note: "Shipped a dozen products across stacks. Learned that shipping is a skill of its own." },
+  {
+    period: "2024 — 2027",
+    role: "BCA Student",
+    org: "Dr. Preeti Global University",
+    note: "Pursuing Bachelor of Computer Applications (CGPA 7.8) with a focus on full-stack web engineering, databases, and modern software design.",
+  },
+  {
+    period: "6 Months",
+    role: "Full-Stack Developer (Project-Based)",
+    org: "Agarwal Tech Support",
+    note: "Built and delivered web features across client projects: responsive UI pages, backend APIs, PostgreSQL schemas, and authentication flows.",
+  },
+  {
+    period: "1 Month",
+    role: "Freelance Full-Stack Developer",
+    org: "Anems Travels",
+    note: "Engineered an end-to-end travel platform for a travel agency client: 50+ packages, custom CMS, booking workflows, and PostgreSQL backend.",
+  },
+  {
+    period: "2024 — Present",
+    role: "Hackathons & Building",
+    org: "5+ Hackathons · 1st Place Win",
+    note: "Won 1st place in a hackathon competition; built and deployed 15+ large full-stack applications and 30+ small/medium web projects.",
+  },
 ];
 
 export const openSource: OssProject[] = [
-  { name: "atlas-ui", desc: "Headless, accessible React primitives with a motion-first API.", meta: "TypeScript · 2.1K stars" },
-  { name: "pgstream", desc: "Tail Postgres logical replication into webhooks and queues.", meta: "Go · 840 stars" },
-  { name: "commitment", desc: "A tiny CLI that enforces conventional commits without config.", meta: "Rust · 310 stars" },
+  {
+    name: "Full-Stack Web Applications",
+    desc: "15+ large full-stack projects and 30+ small/medium web applications built and deployed with React, Next.js, TypeScript, Node.js, and PostgreSQL.",
+    meta: "GitHub · Public Repositories",
+  },
+  {
+    name: "Client Work & Admin Systems",
+    desc: "Freelance client platforms, admin dashboards, and custom CMS workflows.",
+    meta: "GitHub · Real Projects",
+  },
+  {
+    name: "AI & Hackathon Projects",
+    desc: "1st-place hackathon winning project and AI tools integrating modern LLM APIs.",
+    meta: "GitHub · Open Code",
+  },
 ];

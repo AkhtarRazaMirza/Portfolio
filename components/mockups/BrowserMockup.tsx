@@ -2,11 +2,11 @@ import Image from "next/image";
 import type { ComponentType, ReactNode } from "react";
 import { Lock, RefreshCw } from "lucide-react";
 
-const DEPLOYS = [
-  { env: "production", ok: true },
-  { env: "staging", ok: true },
-  { env: "preview #482", ok: false },
-  { env: "production", ok: true },
+const ASSISTANT_ITEMS = [
+  { text: "Smart Inbox Summary", ok: true },
+  { text: "Google Calendar Sync", ok: true },
+  { text: "Natural Language Triage", ok: true },
+  { text: "Meeting Intelligence", ok: true },
 ];
 
 function Bar({ w = "w-3/5", tone = "bg-white/10" }: { w?: string; tone?: string }) {
@@ -116,7 +116,7 @@ export function StelixScreen() {
           </div>
         </div>
         <div className="grid grid-cols-3 gap-2.5 md:gap-3">
-          {[["45ms", "p95"], ["99.98%", "uptime"], ["12", "deploys today"]].map(([v, l]) => (
+          {[["Inbox", "Smart summary"], ["Calendar", "Events tracked"], ["Assistant", "Natural language"]].map(([v, l]) => (
             <div key={l} className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-2.5 md:p-3">
               <p className="font-mono text-xs text-white/90 md:text-sm">{v}</p>
               <p className="mt-1 font-mono text-[8px] uppercase tracking-widest text-zinc-500 md:text-[9px]">{l}</p>
@@ -133,9 +133,9 @@ export function StelixScreen() {
           </div>
           <div className="col-span-2 space-y-2.5 rounded-lg border border-white/[0.06] bg-white/[0.02] p-3">
             <Bar w="w-16" tone="bg-white/25" />
-            {DEPLOYS.map((d, i) => (
+            {ASSISTANT_ITEMS.map((d, i) => (
               <div key={i} className="flex items-center gap-2">
-                <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${d.ok ? "bg-emerald-400/80" : "bg-red-400/80"}`} />
+                <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${d.ok ? "bg-emerald-400/80" : "bg-zinc-400/80"}`} />
                 <Bar w={i % 2 ? "w-2/3" : "w-1/2"} tone="bg-white/15" />
               </div>
             ))}

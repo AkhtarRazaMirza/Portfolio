@@ -13,7 +13,7 @@ export default function OpenSource() {
           <h2 className="font-display text-3xl font-semibold tracking-[-0.03em] text-white sm:text-4xl md:text-6xl">
             Public by<br /><span className="text-zinc-500">default.</span>
           </h2>
-          <Overline>06 — Open Source</Overline>
+          <Overline>06 — Public Code</Overline>
         </Reveal>
 
         <div className="mt-14 space-y-4">
@@ -51,7 +51,7 @@ export default function OpenSource() {
 
         <Reveal delay={0.1} className="mt-10 text-center md:text-left">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-400">
-            Occasional contributor — Next.js · tRPC · shadcn/ui
+            All projects and source code published on GitHub — github.com/AkhtarRazaMirza
           </p>
         </Reveal>
       </div>

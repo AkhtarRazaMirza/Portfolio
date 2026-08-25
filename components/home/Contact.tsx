@@ -45,7 +45,7 @@ export default function Contact() {
           </h2>
           <Reveal delay={0.15}>
             <p className="mt-8 max-w-md text-lg font-light leading-relaxed text-zinc-400">
-              Senior full-stack roles at dev-tool, AI and SaaS startups. If you're building a product that has to be excellent — I want to hear about it.
+              Open for Full-Stack Developer roles, internships, and freelance projects. If you're building a product that has to be reliable and well-crafted — let's connect.
             </p>
           </Reveal>
           <Reveal delay={0.2} className="mt-10">

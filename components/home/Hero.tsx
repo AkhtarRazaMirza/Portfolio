@@ -58,7 +58,7 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.55, ease: EASE }}
           className="mx-auto mt-9 max-w-2xl text-lg font-light leading-relaxed text-zinc-400 md:text-xl"
         >
-          I design and build <span className="font-normal text-white">production-grade systems</span> — from architecture to interface, and every detail between.
+          BCA student and Full-Stack Developer building <span className="font-normal text-white">full-stack web applications</span> — crafting responsive frontends, backend APIs, and database architectures.
         </motion.p>
 
         <motion.div
@@ -103,7 +103,7 @@ export default function Hero() {
             {identity.availability}
           </span>
           <span>{identity.location}</span>
-          <span className="hidden md:inline">EST — PST overlap</span>
+          <span className="hidden md:inline">BCA 2024–2027</span>
         </motion.div>
       </motion.div>
 
@@ -136,7 +136,7 @@ export default function Hero() {
             <BrowserFrame src={projects[1].shots?.[0]} url={projects[1].url} accent={projects[1].accent} alt="PPT.ai — generate presentations from text" />
           </div>
           <div className="mt-6 w-1/2 rotate-2">
-            <BrowserFrame src={projects[2].shots?.[0]} url={projects[2].url} accent={projects[2].accent} alt="AIMS Tours — premium pilgrimage travel" />
+            <BrowserFrame src={projects[2].shots?.[0]} url={projects[2].url} accent={projects[2].accent} alt="AIMS Tours — client travel platform" />
           </div>
         </motion.div>
 
@@ -171,7 +171,7 @@ export default function Hero() {
               transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
               style={{ rotate: 2 }}
             >
-              <BrowserFrame src={projects[2].shots?.[0]} url={projects[2].url} accent={projects[2].accent} alt="AIMS Tours — premium pilgrimage travel" />
+              <BrowserFrame src={projects[2].shots?.[0]} url={projects[2].url} accent={projects[2].accent} alt="AIMS Tours — client travel platform" />
             </motion.div>
           </motion.div>
         </motion.div>
