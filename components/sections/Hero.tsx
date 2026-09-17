@@ -57,7 +57,7 @@ const Hero = () => {
             transition={{duration:0.5}}
             >
                 <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                    Hi , I'm <span className="text-primary">{currentText}</span><span className="animate-pulse text-primary">|</span>
+                    Hi , I&apos;m <span className="text-primary">{currentText}</span><span className="animate-pulse text-primary">|</span>
                 </h1>
                 <p className="text-xl md:text-2xl text-muted-foreground mb-8">BCA student and Full-Stack Developer building full-stack web applications — crafting responsive frontends, backend APIs, and database architectures.</p>
                 <div className="flex gap-4">
