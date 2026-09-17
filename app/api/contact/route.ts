@@ -1,75 +1,69 @@
-import { NextRequest, NextResponse } from "next/server";
-import { ContactMessageCreateSchema } from "@/lib/validations/api";
-import { identity } from "@/lib/site";
+import { Resend } from "resend";
+import { NextResponse, NextRequest } from "next/server";
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const result = ContactMessageCreateSchema.safeParse(body);
+    const { name, email, message } = body || {};
 
-    if (!result.success) {
-      return NextResponse.json({ detail: result.error.issues }, { status: 400 });
+    // Validate name
+    if (!name || typeof name !== "string" || name.trim().length < 2) {
+      return NextResponse.json(
+        { error: "Name must be at least 2 characters." },
+        { status: 400 }
+      );
     }
 
-    const name = result.data.name.trim();
-    const email = result.data.email.trim();
-    const message = result.data.message.trim();
-    const createdAt = new Date().toISOString();
-
-    const resendApiKey = process.env.RESEND_API_KEY;
-    if (!resendApiKey) {
-      console.error("[Contact API] Error: RESEND_API_KEY is not configured.");
+    // Validate email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || typeof email !== "string" || !emailRegex.test(email.trim())) {
       return NextResponse.json(
-        { detail: "Email service is not configured on the server." },
+        { error: "A valid email address is required." },
+        { status: 400 }
+      );
+    }
+
+    // Validate message
+    if (!message || typeof message !== "string" || message.trim().length < 10) {
+      return NextResponse.json(
+        { error: "Message must be at least 10 characters." },
+        { status: 400 }
+      );
+    }
+
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      return NextResponse.json(
+        { error: "RESEND_API_KEY is not configured in the environment." },
         { status: 500 }
       );
     }
 
-    const toEmail = process.env.CONTACT_EMAIL || identity.email || "akhtarrazamirza111@gmail.com";
-    const fromEmail = process.env.RESEND_FROM_EMAIL || "Portfolio Contact <onboarding@resend.dev>";
+    const resend = new Resend(apiKey);
 
-    const resendRes = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${resendApiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: fromEmail,
-        to: [toEmail],
-        reply_to: email,
-        subject: `New Contact Form Message from ${name}`,
-        html: `
-          <div style="font-family: sans-serif; padding: 20px; color: #111;">
-            <h2>New Contact Form Submission</h2>
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-            <p><strong>Message:</strong></p>
-            <blockquote style="background: #f4f4f5; padding: 15px; border-left: 4px solid #18181b; margin: 0;">
-              ${message.replace(/\n/g, "<br/>")}
-            </blockquote>
-            <hr style="margin-top: 20px; border: none; border-top: 1px solid #e4e4e7;" />
-            <p style="font-size: 12px; color: #71717a;">Submitted at ${createdAt}</p>
-          </div>
-        `,
-      }),
+    const { data, error } = await resend.emails.send({
+      from: "Akhtar Raza <hello@akhtarraza.in>",
+      to: "akhtarrazamirza111@gmail.com",
+      replyTo: email.trim(),
+      subject: `New Portfolio Contact from ${name.trim()}`,
+      text: `Name:\n${name.trim()}\n\nEmail:\n${email.trim()}\n\nMessage:\n${message.trim()}`,
     });
 
-    if (!resendRes.ok) {
-      const errorText = await resendRes.text();
-      console.error("[Contact API] Resend email delivery failed:", errorText);
+    if (error) {
       return NextResponse.json(
-        { detail: "Failed to send email notification." },
-        { status: 502 }
+        { error: error.message || "Failed to send message via email service." },
+        { status: 500 }
       );
     }
 
-    const resendData = await resendRes.json();
-    return NextResponse.json({ ok: true, id: resendData.id ?? crypto.randomUUID() }, { status: 200 });
-  } catch (error) {
-    console.error("POST /api/contact error:", error);
-    return NextResponse.json({ detail: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { success: true, message: "Message sent successfully.", id: data?.id },
+      { status: 200 }
+    );
+  } catch {
+    return NextResponse.json(
+      { error: "An unexpected error occurred while processing your message." },
+      { status: 500 }
+    );
   }
 }
-
-
