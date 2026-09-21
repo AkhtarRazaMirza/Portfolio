@@ -69,12 +69,12 @@ This repository contains the source code for my personal portfolio website. I bu
 │   └── page.tsx                 # Main single-page portfolio view
 ├── components/
 │   ├── layout/                  # Header (nav, mobile sheet, resume) & Footer
-│   ├── sections/                # Hero, Skills, Projects, Testimonials, Contact
+│   ├── sections/                # Hero, Skills, Projects, Contact
 │   ├── ui/                      # Radix & shadcn/ui custom primitives
 │   ├── contact-form.tsx         # Contact form component with client validation
 │   └── github-stats.tsx         # Heatmap & streak calculation card
 ├── constants/
-│   └── index.ts                 # Projects, technologies, and testimonials data
+│   └── index.ts                 # Projects and technologies data
 ├── public/                      # Static assets, project screenshots, and resume PDF
 ├── tailwind.config.ts           # Custom Tailwind theme & color tokens
 └── package.json

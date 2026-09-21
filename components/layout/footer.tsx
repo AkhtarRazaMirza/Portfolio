@@ -7,32 +7,45 @@ export function Footer() {
   return (
     <footer className="border-t bg-card">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="md:col-span-2">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          <div className="md:col-span-1 lg:col-span-2 min-w-0">
             <h3 className="text-xl font-bold text-primary mb-4">Akhtar Raza</h3>
             <p className="text-muted-foreground mb-4">
-              BCA student and Full-Stack Developer building full-stack web applications — crafting responsive frontends, backend APIs, and database architectures.
+              BCA student and Full-Stack Developer crafting responsive frontends, backend APIs, and scalable database architectures.
             </p>
             <div className="flex gap-4">
               <Button variant="outline" size="icon" asChild>
-                <a href="https://github.com/AkhtarRazaMirza" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://github.com/AkhtarRazaMirza"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub Profile"
+                >
                   <Github className="w-4 h-4" />
                 </a>
               </Button>
               <Button variant="outline" size="icon" asChild>
-                <a href="https://linkedin.com/in/akhtarraza-dev" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://linkedin.com/in/akhtarraza-dev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn Profile"
+                >
                   <Linkedin className="w-4 h-4" />
                 </a>
               </Button>
               <Button variant="outline" size="icon" asChild>
-                <a href="mailto:akhtarrazamirza111@gmail.com">
+                <a
+                  href="mailto:akhtarrazamirza111@gmail.com"
+                  aria-label="Send Email"
+                >
                   <Mail className="w-4 h-4" />
                 </a>
               </Button>
             </div>
           </div>
 
-          <div>
+          <div className="min-w-0">
             <h4 className="font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li>
@@ -58,14 +71,14 @@ export function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="min-w-0">
             <h4 className="font-semibold mb-4">Contact</h4>
             <ul className="space-y-2">
               <li className="text-muted-foreground">
                 Fatehpur, Uttar Pradesh, India
               </li>
               <li>
-                <a href="mailto:akhtarrazamirza111@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                <a href="mailto:akhtarrazamirza111@gmail.com" className="text-muted-foreground hover:text-primary transition-colors break-all">
                   akhtarrazamirza111@gmail.com
                 </a>
               </li>

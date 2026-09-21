@@ -9,8 +9,68 @@ import { Footer } from "@/components/layout/footer";
 const inter = Inter({subsets:["latin"]});
 
 export const metadata: Metadata = {
-  title: "Akhtar Raza — Full-Stack Developer",
-  description: "Fullstack developer specializing in modern web technologies.",
+  metadataBase: new URL("https://akhtarraza.in"),
+  title: {
+    default: "Akhtar Raza — Full-Stack Developer",
+    template: "%s | Akhtar Raza",
+  },
+  description:
+    "BCA student and Full-Stack Developer building web applications with Next.js, React, Node.js, TypeScript, PostgreSQL, and modern cloud architectures.",
+  alternates: {
+    canonical: "/",
+  },
+  authors: [{ name: "Akhtar Raza", url: "https://akhtarraza.in" }],
+  creator: "Akhtar Raza",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://akhtarraza.in",
+    title: "Akhtar Raza — Full-Stack Developer",
+    description:
+      "BCA student and Full-Stack Developer building web applications with Next.js, React, Node.js, TypeScript, and PostgreSQL.",
+    siteName: "Akhtar Raza Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Akhtar Raza — Full-Stack Developer",
+    description:
+      "BCA student and Full-Stack Developer building web applications with Next.js, React, Node.js, TypeScript, and PostgreSQL.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Akhtar Raza",
+  url: "https://akhtarraza.in",
+  jobTitle: "Full-Stack Developer",
+  sameAs: [
+    "https://github.com/AkhtarRazaMirza",
+    "https://www.linkedin.com/in/akhtarraza-dev",
+  ],
+  knowsAbout: [
+    "Web Development",
+    "Full-Stack Development",
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Node.js",
+    "Express.js",
+    "PostgreSQL",
+    "MongoDB",
+    "Tailwind CSS",
+  ],
 };
 
 export default function RootLayout({
@@ -20,6 +80,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={`${inter.className}`}
       >

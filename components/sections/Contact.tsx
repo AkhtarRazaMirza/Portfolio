@@ -23,17 +23,30 @@ const Contact = () => {
           </p>
           <div className="flex gap-4 mb-8">
             <Button variant={"outline"} size={"icon"} asChild>
-              <a href="https://github.com/AkhtarRazaMirza" target="_blank">
+              <a
+                href="https://github.com/AkhtarRazaMirza"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub Profile"
+              >
                 <Github className="w-5 h-5" />
               </a>
             </Button>
             <Button variant={"outline"} size={"icon"} asChild>
-              <a href="https://www.linkedin.com/in/akhtarraza-dev" target="_blank">
+              <a
+                href="https://www.linkedin.com/in/akhtarraza-dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn Profile"
+              >
                 <Linkedin className="w-5 h-5" />
               </a>
             </Button>
             <Button variant={"outline"} size={"icon"} asChild>
-              <a href="mailto:akhtarrazamirza111@gmail.com" target="_blank">
+              <a
+                href="mailto:akhtarrazamirza111@gmail.com"
+                aria-label="Send Email"
+              >
                 <Mail className="w-5 h-5" />
               </a>
             </Button>

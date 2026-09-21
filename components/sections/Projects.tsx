@@ -44,30 +44,36 @@ const Projects = () => {
                   height={600}
                   className="object-cover group-hover:scale-110 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                  <Button asChild variant={"secondary"} size={"sm"}>
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="gap-2"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      Live Demo
-                    </a>
-                  </Button>
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 md:flex hidden items-center justify-center gap-4">
+                  {project.liveUrl && (
+                    <Button asChild variant={"secondary"} size={"sm"}>
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="gap-2"
+                        aria-label={`${project.title} Live Demo`}
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        Live Demo
+                      </a>
+                    </Button>
+                  )}
 
-                  <Button asChild variant={"secondary"} size={"sm"}>
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="gap-2"
-                    >
-                      <Github className="w-4 h-4" />
-                      Source Code
-                    </a>
-                  </Button>
+                  {project.githubUrl && (
+                    <Button asChild variant={"secondary"} size={"sm"}>
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="gap-2"
+                        aria-label={`${project.title} Source Code`}
+                      >
+                        <Github className="w-4 h-4" />
+                        Source Code
+                      </a>
+                    </Button>
+                  )}
                 </div>
               </div>
 
@@ -99,6 +105,38 @@ const Projects = () => {
                             ))
                         }
                     </ul>
+
+                    {/* Mobile Actions: Accessible on touch screens without requiring hover */}
+                    {(project.liveUrl || project.githubUrl) && (
+                      <div className="flex items-center gap-3 pt-2 md:hidden">
+                        {project.liveUrl && (
+                          <Button asChild variant={"secondary"} size={"sm"} className="flex-1 gap-2">
+                            <a
+                              href={project.liveUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={`${project.title} Live Demo`}
+                            >
+                              <ExternalLink className="w-4 h-4" />
+                              Live Demo
+                            </a>
+                          </Button>
+                        )}
+                        {project.githubUrl && (
+                          <Button asChild variant={"secondary"} size={"sm"} className="flex-1 gap-2">
+                            <a
+                              href={project.githubUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={`${project.title} Source Code`}
+                            >
+                              <Github className="w-4 h-4" />
+                              Source Code
+                            </a>
+                          </Button>
+                        )}
+                      </div>
+                    )}
                 </div>
               </div>
             </Card>

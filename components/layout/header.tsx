@@ -20,8 +20,7 @@ const Header = () => {
   const menuItems = [
     { label: "About", href: "#about" },
     { label: "Skills", href: "#skills" },
-    { label: "Project", href: "#projects" },
-    { label: "Testimonials", href: "#testimonials" },
+    { label: "Projects", href: "#projects" },
     { label: "Contact", href: "#contact" },
   ];
 
@@ -66,6 +65,9 @@ const Header = () => {
             variant={"ghost"}
             size={"icon"}
             className="md:hidden"
+            aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-navigation"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
@@ -81,6 +83,7 @@ const Header = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
+            id="mobile-navigation"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}

@@ -36,11 +36,9 @@ const GithubStats = ({ username }: Props) => {
         }
 
         const data = await response.json();
-        setStats(data)
-        console.log(data)
+        setStats(data);
       } catch (error) {
-        setError(error instanceof Error ? error.message : "failed to fetch github stats")
-        console.error(error)
+        setError(error instanceof Error ? error.message : "failed to fetch github stats");
       }
       finally{
         setLoading(false)
@@ -71,13 +69,24 @@ const GithubStats = ({ username }: Props) => {
 
   if(!stats) return null;
 
-  // Calculate current streak
+  // Calculate current streak (accounting for today being in-progress with 0 commits yet)
   let currentStreak = 0;
-  for (let i = stats.contributions.length - 1; i >= 0; i--) {
-    if (stats.contributions[i].count > 0) {
-      currentStreak++;
-    } else {
-      break;
+  const contributions = stats.contributions;
+  if (contributions.length > 0) {
+    let startIndex = contributions.length - 1;
+    // If today has 0 commits so far, continue counting from yesterday if yesterday had commits
+    if (contributions[startIndex].count === 0 && contributions.length > 1) {
+      if (contributions[startIndex - 1].count > 0) {
+        startIndex = contributions.length - 2;
+      }
+    }
+
+    for (let i = startIndex; i >= 0; i--) {
+      if (contributions[i].count > 0) {
+        currentStreak++;
+      } else {
+        break;
+      }
     }
   }
 
@@ -100,12 +109,12 @@ const GithubStats = ({ username }: Props) => {
   };
 
   return (
-    <Card className="p-4 sm:p-6 lg:p-8 bg-card border-border/5 backdrop-blur-sm overflow-hidden">
+    <Card className="p-4 sm:p-6 lg:p-8 bg-card border-border/5 backdrop-blur-sm overflow-hidden w-full max-w-full">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="space-y-6 sm:space-y-8"
+        className="space-y-6 sm:space-y-8 w-full max-w-full min-w-0"
       >
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-full bg-primary/10">
@@ -156,10 +165,10 @@ const GithubStats = ({ username }: Props) => {
           </motion.div>
         </div>
 
-<div className="space-y-4">
+<div className="space-y-4 w-full max-w-full min-w-0">
 <h4 className="text-sm font-medium text-muted-foreground">Last 30 days</h4>
-<div className="overflow-x-auto pb-4">
-    <div className="grid grid-rows-1 grid-flow-col gap-1 min-w-[600px]">
+<div className="w-full max-w-full overflow-x-auto pb-4 scrollbar-thin">
+    <div className="grid grid-rows-1 grid-flow-col gap-1 w-max min-w-[560px] sm:min-w-[600px]">
     <TooltipProvider>
       {
         stats.contributions.slice(-30).map((day , index)=>(

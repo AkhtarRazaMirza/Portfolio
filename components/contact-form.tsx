@@ -17,9 +17,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 
 const formSchema = z.object({
-  name: z.string().min(2, "Name must be atleast 2 characters"),
-  email: z.string().email("Invalid Email address"),
-  message: z.string().min(10, "message must be atleast 10 characters"),
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
 });
 
 const ContactForm = () => {
@@ -71,7 +71,7 @@ const ContactForm = () => {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder="Suraj Jha" {...field} />
+                <Input placeholder="John Doe" {...field} />
               </FormControl>
 
               <FormMessage />
@@ -86,7 +86,7 @@ const ContactForm = () => {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="jhon@example.com" {...field} />
+                <Input placeholder="john@example.com" {...field} />
               </FormControl>
 
               <FormMessage />

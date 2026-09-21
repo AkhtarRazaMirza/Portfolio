@@ -3,14 +3,13 @@ import {motion} from "framer-motion";
 import React, { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button";
 import { Github, Mail } from "lucide-react";
-import Link from "next/link";
 import Image from "next/image";
 
 const words = [
   "Akhtar Raza",
-  "Full Stack Developer",
-  "Web Developer",
-  "Software Engineer",
+  "a Full-Stack Developer",
+  "a Software Engineer",
+  "a Web Developer",
 ];
 
 const Hero = () => {
@@ -57,20 +56,27 @@ const Hero = () => {
             transition={{duration:0.5}}
             >
                 <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                    Hi , I&apos;m <span className="text-primary">{currentText}</span><span className="animate-pulse text-primary">|</span>
+                    Hi, I&apos;m <span className="text-primary">{currentText}</span><span className="animate-pulse text-primary">|</span>
                 </h1>
-                <p className="text-xl md:text-2xl text-muted-foreground mb-8">BCA student and Full-Stack Developer building full-stack web applications — crafting responsive frontends, backend APIs, and database architectures.</p>
+                <p className="text-xl md:text-2xl text-muted-foreground mb-8">BCA student and Full-Stack Developer crafting responsive frontends, backend APIs, and scalable database architectures.</p>
                 <div className="flex gap-4">
-                <Button variant={"default"} className="gap-2">
-                    <Mail className="w-4 h-4"/>
-                    Contact Me
+                <Button variant={"default"} className="gap-2" asChild>
+                    <a href="#contact">
+                        <Mail className="w-4 h-4"/>
+                        Contact Me
+                    </a>
                 </Button>
-                <Link href={"https://github.com/AkhtarRazaMirza"} target="_blank">
-                <Button variant={"outline"} className="gap-2">
-                    <Github className="w-4 h-4"/>
-                    Github
+                <Button variant={"outline"} className="gap-2" asChild>
+                    <a
+                        href="https://github.com/AkhtarRazaMirza"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="GitHub Profile"
+                    >
+                        <Github className="w-4 h-4"/>
+                        Github
+                    </a>
                 </Button>
-                </Link>
                 </div>
             </motion.div>
 
