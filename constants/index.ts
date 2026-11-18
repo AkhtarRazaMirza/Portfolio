@@ -121,9 +121,9 @@ export const projects: Project[] = [
   {
     title: "AI PPT Generator",
     description:
-      "AI-driven presentation platform built with React, TanStack Start, PostgreSQL, and OpenAI API, using Inngest for asynchronous background slide generation and rendering workflows.",
+      "AI-driven presentation platform built with React, TanStack Start, PostgreSQL, and OpenRouter API, using Inngest for asynchronous background slide generation and rendering workflows.",
     image: "/ppt-ai.webp",
-    technologies: ["React", "TanStack Start", "OpenAI API", "PostgreSQL", "Inngest", "TypeScript"],
+    technologies: ["React", "TanStack Start", "OpenRouter API", "PostgreSQL", "Inngest", "TypeScript"],
     liveUrl: "https://ppt.akhtarraza.in/",
     githubUrl: "https://github.com/AkhtarRazaMirza/Ai-Ppt-genrator",
     features: [
@@ -138,7 +138,7 @@ export const projects: Project[] = [
     description:
       "AI-assisted research and note-taking platform featuring retrieval-augmented generation (RAG), semantic vector search, and document insights across PDFs, web links, and YouTube content.",
     image: "/chaibook-lm.webp",
-    technologies: ["Next.js", "Node.js", "Prisma", "PostgreSQL", "RAG", "OpenAI API"],
+    technologies: ["Next.js", "Node.js", "Prisma", "PostgreSQL", "RAG", "OpenRouter API"],
     liveUrl: "https://lm.akhtarraza.in/",
     githubUrl: "https://github.com/AkhtarRazaMirza/NoteBook-ML",
     features: [
