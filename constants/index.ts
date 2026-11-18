@@ -119,6 +119,21 @@ export const projects: Project[] = [
     ],
   },
   {
+    title: "Stelix",
+    description:
+      "AI-powered productivity command center that unifies Gmail and Google Calendar with a Groq-powered tool-calling agent. Built with Next.js, Express, PostgreSQL, Drizzle ORM, and Corsair integrations to manage email, schedule meetings, and execute multi-step workflows using natural-language commands.",
+    image: "/stelix.jpeg",
+    technologies: ["Next.js", "TypeScript", "Express.js", "PostgreSQL", "Drizzle ORM", "Groq", "Corsair"],
+    liveUrl: "https://stelix.akhtarraza.in/",
+    githubUrl: "https://github.com/AkhtarRazaMirza/stelix",
+    features: [
+      "AI-powered multi-step productivity assistant",
+      "Gmail inbox, search, reading and sending",
+      "Google Calendar event management",
+      "Unified dashboard and persistent assistant chat",
+    ],
+  },
+  {
     title: "AI PPT Generator",
     description:
       "AI-driven presentation platform built with React, TanStack Start, PostgreSQL, and OpenRouter API, using Inngest for asynchronous background slide generation and rendering workflows.",
