@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/"],
     },
-    sitemap: "https://akhtarraza.in/sitemap.xml",
+    sitemap: "https://www.akhtarraza.in/sitemap.xml",
   };
 }

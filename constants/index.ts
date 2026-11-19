@@ -100,6 +100,7 @@ export interface Project {
   technologies: string[];
   liveUrl?: string;
   githubUrl?: string;
+  caseStudyUrl: string;
   features: string[];
 }
 
@@ -111,6 +112,7 @@ export const projects: Project[] = [
     image: "/fieldwork-form-engine.webp",
     technologies: ["Next.js", "TypeScript", "tRPC", "Express.js", "PostgreSQL", "Drizzle ORM", "Turborepo"],
     githubUrl: "https://github.com/AkhtarRazaMirza/Form-Engine",
+    caseStudyUrl: "/projects/form-engine",
     features: [
       "Visual drag-and-drop form canvas",
       "Atomic two-phase field reordering",
@@ -126,6 +128,7 @@ export const projects: Project[] = [
     technologies: ["Next.js", "TypeScript", "Express.js", "PostgreSQL", "Drizzle ORM", "Groq", "Corsair"],
     liveUrl: "https://stelix.akhtarraza.in/",
     githubUrl: "https://github.com/AkhtarRazaMirza/stelix",
+    caseStudyUrl: "/projects/stelix",
     features: [
       "AI-powered multi-step productivity assistant",
       "Gmail inbox, search, reading and sending",
@@ -141,6 +144,7 @@ export const projects: Project[] = [
     technologies: ["React", "TanStack Start", "OpenRouter API", "PostgreSQL", "Inngest", "TypeScript"],
     liveUrl: "https://ppt.akhtarraza.in/",
     githubUrl: "https://github.com/AkhtarRazaMirza/Ai-Ppt-genrator",
+    caseStudyUrl: "/projects/ai-ppt-generator",
     features: [
       "Prompt-to-deck generation",
       "Automated content summarization",
@@ -156,6 +160,7 @@ export const projects: Project[] = [
     technologies: ["Next.js", "Node.js", "Prisma", "PostgreSQL", "RAG", "OpenRouter API"],
     liveUrl: "https://lm.akhtarraza.in/",
     githubUrl: "https://github.com/AkhtarRazaMirza/NoteBook-ML",
+    caseStudyUrl: "/projects/ai-learning-research",
     features: [
       "RAG pipeline with semantic search",
       "Multi-source ingestion (PDF, Web, Video)",
@@ -166,30 +171,32 @@ export const projects: Project[] = [
   {
     title: "PollBoard",
     description:
-      "Real-time polling and quiz platform built with the MERN stack and Socket.IO. Features live bi-directional response streaming, room-based voter presence, Recharts analytics, CSV data export, and IP/session duplicate submission prevention.",
+      "Real-time polling and quiz platform built with the MERN stack and Socket.IO. Features live bi-directional response streaming, room-based voter presence, Recharts analytics, CSV data export, and best-effort anonymous duplicate voting deterrence via session/IP tracking.",
     image: "/pollboard.png",
     technologies: ["React", "Node.js", "Express.js", "MongoDB", "Socket.io", "Tailwind CSS"],
     liveUrl: "https://pollboard-opal.vercel.app",
     githubUrl: "https://github.com/AkhtarRazaMirza/PollBoard",
+    caseStudyUrl: "/projects/pollboard",
     features: [
       "Room-based Socket.IO live updates",
       "Interactive Recharts analytics & CSV export",
-      "Duplicate submission & rate limit enforcement",
+      "Authenticated vote tracking & anonymous duplicate deterrents",
       "JWT authentication & anonymous voter mode",
     ],
   },
   {
     title: "Travel Agency Platform",
     description:
-      "Production travel booking platform featuring real-time booking tracking, dynamic pricing rules, order management, and a dedicated administrative operations panel.",
+      "Production pilgrimage travel platform for an active travel agency client. Features documented package management, booking inquiry workflows, CMS and blog administration, and backend APIs supporting 50+ travel packages.",
     image: "/anems-travels.webp",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Redis", "PostgreSQL"],
     liveUrl: "https://aimstravels.in/",
+    caseStudyUrl: "/projects/anems-travels",
     features: [
-      "Real-time booking tracking",
-      "Dynamic pricing engine",
-      "Admin operations dashboard",
-      "Redis caching for high performance",
+      "Curated 50+ travel package catalog",
+      "Booking inquiry workflows & WhatsApp channel",
+      "Administrative CMS & blog management",
+      "Documented PostgreSQL, Drizzle & Redis architecture",
     ],
   },
 ];

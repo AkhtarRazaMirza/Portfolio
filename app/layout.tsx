@@ -9,7 +9,7 @@ import { Footer } from "@/components/layout/footer";
 const inter = Inter({subsets:["latin"]});
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://akhtarraza.in"),
+  metadataBase: new URL("https://www.akhtarraza.in"),
   title: {
     default: "Akhtar Raza — Full-Stack Developer",
     template: "%s | Akhtar Raza",
@@ -19,12 +19,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  authors: [{ name: "Akhtar Raza", url: "https://akhtarraza.in" }],
+  authors: [{ name: "Akhtar Raza", url: "https://www.akhtarraza.in" }],
   creator: "Akhtar Raza",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://akhtarraza.in",
+    url: "https://www.akhtarraza.in",
     title: "Akhtar Raza — Full-Stack Developer",
     description:
       "BCA student and Full-Stack Developer building web applications with Next.js, React, Node.js, TypeScript, and PostgreSQL.",
@@ -53,7 +53,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Akhtar Raza",
-  url: "https://akhtarraza.in",
+  url: "https://www.akhtarraza.in",
   jobTitle: "Full-Stack Developer",
   sameAs: [
     "https://github.com/AkhtarRazaMirza",

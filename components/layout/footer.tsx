@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin, Mail, Heart } from "lucide-react";
 
@@ -49,24 +50,24 @@ export function Footer() {
             <h4 className="font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#about" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/#about" className="text-muted-foreground hover:text-primary transition-colors">
                   About
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#skills" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/#skills" className="text-muted-foreground hover:text-primary transition-colors">
                   Skills
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#projects" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/#projects" className="text-muted-foreground hover:text-primary transition-colors">
                   Projects
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/#contact" className="text-muted-foreground hover:text-primary transition-colors">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

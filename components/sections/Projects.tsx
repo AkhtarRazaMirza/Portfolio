@@ -4,8 +4,9 @@ import { motion } from "framer-motion";
 import { projects } from "@/constants";
 import { Card } from "../ui/card";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "../ui/button";
-import { Check, ExternalLink, Github } from "lucide-react";
+import { ArrowRight, BookOpen, Check, ExternalLink, Github } from "lucide-react";
 import { Badge } from "../ui/badge";
 
 const Projects = () => {
@@ -44,14 +45,14 @@ const Projects = () => {
                   height={600}
                   className="object-cover group-hover:scale-110 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 md:flex hidden items-center justify-center gap-4">
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 md:flex hidden items-center justify-center gap-3 px-4">
                   {project.liveUrl && (
                     <Button asChild variant={"secondary"} size={"sm"}>
                       <a
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="gap-2"
+                        className="gap-1.5"
                         aria-label={`${project.title} Live Demo`}
                       >
                         <ExternalLink className="w-4 h-4" />
@@ -66,7 +67,7 @@ const Projects = () => {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="gap-2"
+                        className="gap-1.5"
                         aria-label={`${project.title} Source Code`}
                       >
                         <Github className="w-4 h-4" />
@@ -106,34 +107,67 @@ const Projects = () => {
                         }
                     </ul>
 
+                    {/* Desktop Case Study link */}
+                    {project.caseStudyUrl && (
+                      <div className="pt-2 hidden md:block">
+                        <Button
+                          asChild
+                          variant="outline"
+                          size="sm"
+                          className="w-full gap-2 text-xs border-primary/30 hover:border-primary text-foreground hover:text-primary transition-colors"
+                        >
+                          <Link href={project.caseStudyUrl} aria-label={`View ${project.title} Case Study`}>
+                            <BookOpen className="w-3.5 h-3.5 text-primary" />
+                            Read Case Study
+                            <ArrowRight className="w-3.5 h-3.5 ml-auto" />
+                          </Link>
+                        </Button>
+                      </div>
+                    )}
+
                     {/* Mobile Actions: Accessible on touch screens without requiring hover */}
-                    {(project.liveUrl || project.githubUrl) && (
-                      <div className="flex items-center gap-3 pt-2 md:hidden">
-                        {project.liveUrl && (
-                          <Button asChild variant={"secondary"} size={"sm"} className="flex-1 gap-2">
-                            <a
-                              href={project.liveUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              aria-label={`${project.title} Live Demo`}
+                    {(project.liveUrl || project.githubUrl || project.caseStudyUrl) && (
+                      <div className="flex flex-col gap-2 pt-2 md:hidden">
+                        {project.caseStudyUrl && (
+                          <Button asChild variant="default" size="sm" className="w-full gap-2">
+                            <Link
+                              href={project.caseStudyUrl}
+                              aria-label={`${project.title} Case Study`}
                             >
-                              <ExternalLink className="w-4 h-4" />
-                              Live Demo
-                            </a>
+                              <BookOpen className="w-4 h-4" />
+                              Read Case Study
+                            </Link>
                           </Button>
                         )}
-                        {project.githubUrl && (
-                          <Button asChild variant={"secondary"} size={"sm"} className="flex-1 gap-2">
-                            <a
-                              href={project.githubUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              aria-label={`${project.title} Source Code`}
-                            >
-                              <Github className="w-4 h-4" />
-                              Source Code
-                            </a>
-                          </Button>
+                        {(project.liveUrl || project.githubUrl) && (
+                          <div className="flex items-center gap-2">
+                            {project.liveUrl && (
+                              <Button asChild variant={"secondary"} size={"sm"} className="flex-1 gap-2">
+                                <a
+                                  href={project.liveUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  aria-label={`${project.title} Live Demo`}
+                                >
+                                  <ExternalLink className="w-4 h-4" />
+                                  Live Demo
+                                </a>
+                              </Button>
+                            )}
+                            {project.githubUrl && (
+                              <Button asChild variant={"secondary"} size={"sm"} className="flex-1 gap-2">
+                                <a
+                                  href={project.githubUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  aria-label={`${project.title} Source Code`}
+                                >
+                                  <Github className="w-4 h-4" />
+                                  Source Code
+                                </a>
+                              </Button>
+                            )}
+                          </div>
                         )}
                       </div>
                     )}

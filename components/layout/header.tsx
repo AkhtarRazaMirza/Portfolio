@@ -18,10 +18,10 @@ const Header = () => {
   }, []);
 
   const menuItems = [
-    { label: "About", href: "#about" },
-    { label: "Skills", href: "#skills" },
-    { label: "Projects", href: "#projects" },
-    { label: "Contact", href: "#contact" },
+    { label: "About", href: "/#about" },
+    { label: "Skills", href: "/#skills" },
+    { label: "Projects", href: "/#projects" },
+    { label: "Contact", href: "/#contact" },
   ];
 
   return (
@@ -39,13 +39,13 @@ const Header = () => {
           {/* Desktop Menu */}
           <nav className="hidden md:flex items-center gap-8">
             {menuItems.map((item) => (
-              <a
+              <Link
                 href={item.href}
                 key={item.href}
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
             <Button variant={"default"} size={"sm"} className="gap-2" asChild>
               <a
@@ -91,14 +91,14 @@ const Header = () => {
           >
             <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
               {menuItems.map((item) => (
-                <a
+                <Link
                   href={item.href}
                   key={item.href}
                   className="text-sm font-medium text-muted-foreground hover:text-primary transition-all"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
               <Button variant={"default"} size={"sm"} className="gap-2" asChild>
                 <a
