@@ -171,17 +171,17 @@ export const projects: Project[] = [
   {
     title: "PollBoard",
     description:
-      "Real-time polling and quiz platform built with the MERN stack and Socket.IO. Features live bi-directional response streaming, room-based voter presence, Recharts analytics, CSV data export, and best-effort anonymous duplicate voting deterrence via session/IP tracking.",
+      "First Place Winner (₹5,000 prize) at the CodeEra Hackathon. Real-time polling and quiz platform built with the MERN stack and Socket.IO. Features live bi-directional response streaming, room-based voter presence, Recharts analytics, CSV data export, and best-effort anonymous duplicate voting deterrence via session/IP tracking.",
     image: "/pollboard.png",
     technologies: ["React", "Node.js", "Express.js", "MongoDB", "Socket.io", "Tailwind CSS"],
     liveUrl: "https://pollboard-opal.vercel.app",
     githubUrl: "https://github.com/AkhtarRazaMirza/PollBoard",
     caseStudyUrl: "/projects/pollboard",
     features: [
+      "CodeEra Hackathon 1st Place (₹5,000 Prize)",
       "Room-based Socket.IO live updates",
       "Interactive Recharts analytics & CSV export",
       "Authenticated vote tracking & anonymous duplicate deterrents",
-      "JWT authentication & anonymous voter mode",
     ],
   },
   {
@@ -198,5 +198,79 @@ export const projects: Project[] = [
       "Administrative CMS & blog management",
       "Documented PostgreSQL, Drizzle & Redis architecture",
     ],
+  },
+];
+
+export interface ExperienceEntry {
+  period: string;
+  role: string;
+  organization: string;
+  badge?: string;
+  type: "work" | "freelance" | "achievement" | "education";
+  description: string;
+  highlights: string[];
+  technologies?: string[];
+}
+
+export const experiences: ExperienceEntry[] = [
+  {
+    period: "6 Months",
+    role: "Full-Stack Developer (Project-Based)",
+    organization: "Agarwal Tech Support",
+    type: "work",
+    badge: "Commercial Client Work",
+    description:
+      "Built and delivered production web features across client projects, spanning responsive frontend interfaces, backend APIs, and database architecture.",
+    highlights: [
+      "Engineered frontend pages and responsive UI components with React and Next.js",
+      "Built secure backend APIs, session authentication, and database schemas with PostgreSQL",
+      "Implemented feature-level integrations and AI-powered capabilities based on client specifications",
+    ],
+    technologies: ["React", "Next.js", "TypeScript", "Node.js", "Express.js", "PostgreSQL"],
+  },
+  {
+    period: "1 Month",
+    role: "Freelance Full-Stack Developer",
+    organization: "Anems Travels",
+    type: "freelance",
+    badge: "Client Deliverable",
+    description:
+      "Engineered an end-to-end pilgrimage travel platform for an active commercial travel agency client (aimstravels.in), handling public routes, administrative CMS, and inquiry channels.",
+    highlights: [
+      "Built curated 50+ travel package catalog with hotel accommodation tiers and seasonal pricing",
+      "Developed custom administrative CMS and blog dashboard for non-technical agency staff",
+      "Implemented WhatsApp-first inquiry funnel to connect pilgrims directly with travel coordinators",
+    ],
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "Drizzle ORM", "Redis"],
+  },
+  {
+    period: "2024 — Present",
+    role: "Hackathon Competitor & Builder",
+    organization: "CodeEra Hackathon · 1st Place Winner",
+    type: "achievement",
+    badge: "1st Place (₹5,000 Prize)",
+    description:
+      "Awarded First Place (1st) with a ₹5,000 cash prize at the CodeEra Hackathon for PollBoard, an ultra-responsive real-time polling and quiz platform.",
+    highlights: [
+      "Won 1st Place at CodeEra Hackathon with PollBoard (real-time WebSockets & Mongoose partial unique indexing)",
+      "Participated in 5+ competitive hackathons building rapid prototypes and scalable MVPs",
+      "Built and deployed 15+ large full-stack projects and 30+ web applications across diverse stacks",
+    ],
+    technologies: ["Socket.IO", "React", "Node.js", "MongoDB", "Express.js"],
+  },
+  {
+    period: "2024 — 2027",
+    role: "Bachelor of Computer Applications (BCA)",
+    organization: "Dr. Preeti Global University",
+    type: "education",
+    badge: "CGPA: 7.8",
+    description:
+      "Pursuing BCA with a rigorous focus on full-stack web engineering, relational database design, data structures, and distributed cloud systems.",
+    highlights: [
+      "Cumulative GPA: 7.8 (Semester 1: 7.8, Semester 2: 8.2, Semester 3: 7.8, Semester 4: 8.0)",
+      "Core coursework in Data Structures, Database Management Systems (DBMS), Web Development, and Computer Networks",
+      "Hands-on application through building production-grade SaaS architectures and monorepos",
+    ],
+    technologies: ["TypeScript", "Data Structures", "PostgreSQL", "System Design"],
   },
 ];

@@ -2,6 +2,7 @@
 import GithubStats from "@/components/github-stats";
 import Contact from "@/components/sections/Contact";
 import Hero from "@/components/sections/Hero";
+import Experience from "@/components/sections/Experience";
 import Projects from "@/components/sections/Projects";
 import Skills from "@/components/sections/Skills";
 
@@ -12,6 +13,7 @@ export default function Home() {
   return (
  <main className="min-h-screen bg-background">
   <Hero/>
+  <Experience/>
   <Skills/>
   <Projects/>
   {/* Github Stats Section */}

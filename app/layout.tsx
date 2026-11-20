@@ -59,6 +59,11 @@ const jsonLd = {
     "https://github.com/AkhtarRazaMirza",
     "https://www.linkedin.com/in/akhtarraza-dev",
   ],
+  alumniOf: {
+    "@type": "EducationalOrganization",
+    name: "Dr. Preeti Global University",
+  },
+  award: "First Place (1st) — CodeEra Hackathon (PollBoard, ₹5,000 Prize)",
   knowsAbout: [
     "Web Development",
     "Full-Stack Development",

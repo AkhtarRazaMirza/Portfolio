@@ -647,8 +647,8 @@ export const caseStudies: Record<string, CaseStudyData> = {
     slug: "pollboard",
     title: "PollBoard",
     tagline:
-      "Real-time polling and quiz platform featuring bi-directional Socket.IO updates, Recharts analytics, duplicate vote prevention, and client CSV exports.",
-    category: "Full-Stack MERN Application · Real-Time Web",
+      "First Place Winner (₹5,000 prize) at CodeEra Hackathon. Real-time polling and quiz platform featuring bi-directional Socket.IO updates, Recharts analytics, duplicate vote prevention, and client CSV exports.",
+    category: "Full-Stack MERN · CodeEra Hackathon 1st Place Winner",
     projectType: "source-verified",
     role: "Full-Stack Developer",
     heroImage: "/pollboard.png",
@@ -658,7 +658,7 @@ export const caseStudies: Record<string, CaseStudyData> = {
     githubUrl: "https://github.com/AkhtarRazaMirza/PollBoard",
     overview: [
       "PollBoard is a real-time polling and audience-engagement platform built on the MERN stack (MongoDB, Express 5, React 19, Node.js) with Socket.IO.",
-      "Designed for classrooms, student teams, hackathons, and live presentations, creators can build multi-question polls, enforce voting rules, and observe live responses update instantaneously without page reloads.",
+      "Developed for and awarded First Place (1st Prize: ₹5,000) at the CodeEra Hackathon, PollBoard is engineered for classrooms, student teams, live presentations, and hackathons where creators need instantaneous live response tallies without page reloads.",
       "The platform features room-based WebSocket broadcasting, animated analytics powered by Recharts, automated poll expiry enforcement, and CSV export functionality.",
     ],
     problemAndMotivation: [
@@ -715,6 +715,11 @@ export const caseStudies: Record<string, CaseStudyData> = {
       },
     ],
     coreFeatures: [
+      {
+        title: "CodeEra Hackathon First Place Achievement",
+        description:
+          "Awarded First Place (1st) with a ₹5,000 cash prize at the CodeEra Hackathon for live interactive audience engagement and room-based Socket.IO architecture.",
+      },
       {
         title: "Room-Scoped Live Response Streaming",
         description:
@@ -792,6 +797,7 @@ export const caseStudies: Record<string, CaseStudyData> = {
       },
     ],
     outcomesAndLearnings: [
+      "Awarded First Place (1st Prize: ₹5,000) at the CodeEra Hackathon for real-time polling performance and resilient WebSocket room engineering.",
       "Gained hands-on experience designing and debugging room-scoped WebSocket architectures with Socket.IO.",
       "Engineered and verified MongoDB partial unique indexes to solve cross-voter null index collisions, backed by an automated 19-test verification suite covering concurrency, error mapping, and legacy index replacement.",
       "Engineered accessible, real-time data visualizations using Recharts and Framer Motion.",
