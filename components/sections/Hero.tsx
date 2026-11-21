@@ -1,5 +1,5 @@
 "use client";
-import {motion} from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import React, { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button";
 import { Github, Mail } from "lucide-react";
@@ -16,8 +16,14 @@ const Hero = () => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentText, setCurrentText] = useState("Akhtar Raza");
   const [isDeleting, setIsDeleting] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
+    if (shouldReduceMotion) {
+      setCurrentText("Akhtar Raza");
+      return;
+    }
+
     const fullText = words[currentWordIndex];
     let timer: ReturnType<typeof setTimeout>;
 
@@ -45,10 +51,10 @@ const Hero = () => {
     }
 
     return () => clearTimeout(timer);
-  }, [currentText, isDeleting, currentWordIndex]);
+  }, [currentText, isDeleting, currentWordIndex, shouldReduceMotion]);
 
   return (
-    <section id="hero" className='container mx-auto px-4 pt-32 pb-20'>
+    <section id="hero" className='container mx-auto px-4 pt-28 sm:pt-32 pb-16 sm:pb-20'>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-12 items-center'>
             <motion.div
             initial={{opacity:0 , x:-20}}
@@ -56,7 +62,11 @@ const Hero = () => {
             transition={{duration:0.5}}
             >
                 <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                    Hi, I&apos;m <span className="text-primary">{currentText}</span><span className="animate-pulse text-primary">|</span>
+                    <span className="sr-only">Hi, I&apos;m Akhtar Raza, a Full-Stack Developer</span>
+                    <span aria-hidden="true">
+                        Hi, I&apos;m <span className="text-primary">{currentText}</span>
+                        <span className={shouldReduceMotion ? "text-primary" : "animate-pulse text-primary"}>|</span>
+                    </span>
                 </h1>
                 <p className="text-xl md:text-2xl text-muted-foreground mb-8">BCA student and Full-Stack Developer crafting responsive frontends, backend APIs, and scalable database architectures.</p>
                 <div className="flex gap-4">
@@ -71,7 +81,7 @@ const Hero = () => {
                         href="https://github.com/AkhtarRazaMirza"
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label="GitHub Profile"
+                        aria-label="GitHub Profile (opens in new tab)"
                     >
                         <Github className="w-4 h-4"/>
                         Github
@@ -88,7 +98,8 @@ const Hero = () => {
             >
                 <Image 
                 src={"/hero.svg"}
-                alt="Developer Illustration"
+                alt=""
+                aria-hidden="true"
                 width={500}
                 height={500}
                 priority

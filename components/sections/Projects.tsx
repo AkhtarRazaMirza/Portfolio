@@ -45,7 +45,7 @@ const Projects = () => {
                   height={600}
                   className="object-cover group-hover:scale-110 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 md:flex hidden items-center justify-center gap-3 px-4">
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 lg:flex hidden items-center justify-center gap-3 px-4">
                   {project.liveUrl && (
                     <Button asChild variant={"secondary"} size={"sm"}>
                       <a
@@ -53,7 +53,7 @@ const Projects = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="gap-1.5"
-                        aria-label={`${project.title} Live Demo`}
+                        aria-label={`${project.title} Live Demo (opens in new tab)`}
                       >
                         <ExternalLink className="w-4 h-4" />
                         Live Demo
@@ -68,7 +68,7 @@ const Projects = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="gap-1.5"
-                        aria-label={`${project.title} Source Code`}
+                        aria-label={`${project.title} Source Code (opens in new tab)`}
                       >
                         <Github className="w-4 h-4" />
                         Source Code
@@ -107,9 +107,9 @@ const Projects = () => {
                         }
                     </ul>
 
-                    {/* Desktop Case Study link */}
+                    {/* Desktop Case Study link (screens >= 1024px) */}
                     {project.caseStudyUrl && (
-                      <div className="pt-2 hidden md:block">
+                      <div className="pt-2 hidden lg:block">
                         <Button
                           asChild
                           variant="outline"
@@ -125,9 +125,9 @@ const Projects = () => {
                       </div>
                     )}
 
-                    {/* Mobile Actions: Accessible on touch screens without requiring hover */}
+                    {/* Touch / Tablet / Mobile Actions (< 1024px): Discoverable without requiring mouse hover */}
                     {(project.liveUrl || project.githubUrl || project.caseStudyUrl) && (
-                      <div className="flex flex-col gap-2 pt-2 md:hidden">
+                      <div className="flex flex-col gap-2 pt-2 lg:hidden">
                         {project.caseStudyUrl && (
                           <Button asChild variant="default" size="sm" className="w-full gap-2">
                             <Link
@@ -147,7 +147,7 @@ const Projects = () => {
                                   href={project.liveUrl}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  aria-label={`${project.title} Live Demo`}
+                                  aria-label={`${project.title} Live Demo (opens in new tab)`}
                                 >
                                   <ExternalLink className="w-4 h-4" />
                                   Live Demo
@@ -160,7 +160,7 @@ const Projects = () => {
                                   href={project.githubUrl}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  aria-label={`${project.title} Source Code`}
+                                  aria-label={`${project.title} Source Code (opens in new tab)`}
                                 >
                                   <Github className="w-4 h-4" />
                                   Source Code

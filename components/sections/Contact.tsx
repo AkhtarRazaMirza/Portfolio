@@ -22,6 +22,7 @@ import {
 
 const Contact = () => {
   const [copied, setCopied] = useState(false);
+  const [copyStatusMessage, setCopyStatusMessage] = useState("");
   const emailAddress = "akhtarrazamirza111@gmail.com";
 
   const copyUsingExecCommand = (text: string): boolean => {
@@ -71,15 +72,30 @@ const Contact = () => {
     // 3. Only show "Copied" if copying actually succeeded; otherwise show appropriate error
     if (success) {
       setCopied(true);
+      setCopyStatusMessage("Email address copied to clipboard.");
       toast.success("Email address copied to clipboard.");
-      setTimeout(() => setCopied(false), 2500);
+      setTimeout(() => {
+        setCopied(false);
+        setCopyStatusMessage("");
+      }, 2500);
     } else {
+      setCopyStatusMessage(`Could not copy automatically. Email: ${emailAddress}`);
       toast.error(`Could not copy automatically. Email: ${emailAddress}`);
     }
   };
 
   return (
     <section id="contact" className="container mx-auto px-4 py-20 scroll-mt-16">
+      {/* Screen-reader live region for copy confirmation without visual disruption */}
+      <div
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        className="sr-only"
+      >
+        {copyStatusMessage}
+      </div>
+
       <div className="text-center mb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

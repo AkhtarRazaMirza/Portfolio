@@ -31,7 +31,7 @@ interface Props {
 
 export default function CaseStudyView({ data }: Props) {
   return (
-    <article className="min-h-screen bg-background pt-28 pb-24">
+    <article id="main-content" tabIndex={-1} className="min-h-screen bg-background pt-28 pb-24 outline-none">
       {/* Top Breadcrumb & Navigation */}
       <div className="container mx-auto px-4 max-w-5xl">
         <motion.div
@@ -42,7 +42,7 @@ export default function CaseStudyView({ data }: Props) {
         >
           <Link
             href="/#projects"
-            className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors group"
+            className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring rounded-sm px-1 py-0.5"
           >
             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
             Back to Projects
@@ -166,7 +166,7 @@ export default function CaseStudyView({ data }: Props) {
         <section className="py-12 border-b border-border/40">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <Card className="p-6 bg-card border-border/40 space-y-4">
-              <div className="flex items-center gap-2.5 text-destructive font-semibold">
+              <div className="flex items-center gap-2.5 text-destructive-text font-semibold">
                 <HelpCircle className="w-5 h-5" />
                 <h3 className="text-lg text-foreground font-semibold">
                   The Problem & Motivation
@@ -175,7 +175,7 @@ export default function CaseStudyView({ data }: Props) {
               <ul className="space-y-3 text-sm text-muted-foreground leading-relaxed">
                 {data.problemAndMotivation.map((item, i) => (
                   <li key={i} className="flex items-start gap-2.5">
-                    <span className="h-1.5 w-1.5 rounded-full bg-destructive shrink-0 mt-2" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-destructive-text shrink-0 mt-2" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -330,7 +330,7 @@ export default function CaseStudyView({ data }: Props) {
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm pt-2">
                   <div className="p-3.5 rounded-lg bg-destructive/5 border border-destructive/10 space-y-1">
-                    <span className="text-xs uppercase tracking-wider font-semibold text-destructive">
+                    <span className="text-xs uppercase tracking-wider font-semibold text-destructive-text">
                       Challenge
                     </span>
                     <p className="text-muted-foreground text-xs leading-relaxed">

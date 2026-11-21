@@ -50,22 +50,22 @@ export function Footer() {
             <h4 className="font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/#about" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/#about" className="text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring rounded-sm px-1 py-0.5">
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/#skills" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/#skills" className="text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring rounded-sm px-1 py-0.5">
                   Skills
                 </Link>
               </li>
               <li>
-                <Link href="/#projects" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/#projects" className="text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring rounded-sm px-1 py-0.5">
                   Projects
                 </Link>
               </li>
               <li>
-                <Link href="/#contact" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/#contact" className="text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring rounded-sm px-1 py-0.5">
                   Contact
                 </Link>
               </li>
@@ -79,12 +79,12 @@ export function Footer() {
                 Fatehpur, Uttar Pradesh, India
               </li>
               <li>
-                <a href="mailto:akhtarrazamirza111@gmail.com" className="text-muted-foreground hover:text-primary transition-colors break-all">
+                <a href="mailto:akhtarrazamirza111@gmail.com" className="text-muted-foreground hover:text-primary transition-colors break-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring rounded-sm px-1 py-0.5">
                   akhtarrazamirza111@gmail.com
                 </a>
               </li>
               <li>
-                <a href="tel:+919129403422" className="text-muted-foreground hover:text-primary transition-colors">
+                <a href="tel:+919129403422" className="text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring rounded-sm px-1 py-0.5">
                   +91 9129403422
                 </a>
               </li>

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Download, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,6 +8,7 @@ import Link from "next/link";
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +17,21 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Handle Escape key to close mobile menu and restore focus to toggle button
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsMobileMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isMobileMenuOpen]);
 
   const menuItems = [
     { label: "About", href: "/#about" },
@@ -32,17 +48,20 @@ const Header = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link href={"/"} className="text-xl font-bold text-primary">
+          <Link
+            href={"/"}
+            className="text-xl font-bold text-primary focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring rounded-sm"
+          >
             Akhtar Raza
           </Link>
 
           {/* Desktop Menu */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-8" aria-label="Main Navigation">
             {menuItems.map((item) => (
               <Link
                 href={item.href}
                 key={item.href}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring rounded-sm px-1 py-0.5"
               >
                 {item.label}
               </Link>
@@ -53,6 +72,7 @@ const Header = () => {
                 download="Akhtar_Raza_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Download Resume PDF (opens in new tab)"
               >
                 <Download className="w-4 h-4" />
                 Resume
@@ -62,6 +82,7 @@ const Header = () => {
 
           {/*MOBILE MENU BUTTON  */}
           <Button
+            ref={menuButtonRef}
             variant={"ghost"}
             size={"icon"}
             className="md:hidden"
@@ -79,7 +100,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu (Disclosure navigation) */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -89,24 +110,31 @@ const Header = () => {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden border-t bg-background"
           >
-            <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
+            <nav className="container mx-auto px-4 py-4 flex flex-col gap-2" aria-label="Mobile Navigation">
               {menuItems.map((item) => (
                 <Link
                   href={item.href}
                   key={item.href}
-                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-all"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center min-h-[44px] text-sm font-medium text-muted-foreground hover:text-primary transition-colors px-3 rounded-md hover:bg-secondary/50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    menuButtonRef.current?.focus();
+                  }}
                 >
                   {item.label}
                 </Link>
               ))}
-              <Button variant={"default"} size={"sm"} className="gap-2" asChild>
+              <Button variant={"default"} size={"sm"} className="gap-2 mt-2 h-11 min-h-[44px]" asChild>
                 <a
                   href="/Akhtar_Raza_Resume.pdf"
                   download="Akhtar_Raza_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  aria-label="Download Resume PDF (opens in new tab)"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    menuButtonRef.current?.focus();
+                  }}
                 >
                   <Download className="w-4 h-4" />
                   Resume

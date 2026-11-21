@@ -14,23 +14,23 @@ const Skills = () => {
       initial={{opacity:0 , y:20}}
       animate={{opacity:1 , y:0}}
       transition={{duration:0.5}}
-      className='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8'
+      className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-6 lg:gap-8'
       >
         {
           technologies.map((tech , index)=>(
             <Card
             key={index}
-            className='p-4 flex flex-col items-center justify-center hover:border-primary transition-colors'
+            className='p-3 sm:p-4 flex flex-col items-center justify-center hover:border-primary transition-colors'
             >
               <Image
               src={tech.logo}
-              alt={tech.name
-              }
+              alt=""
+              aria-hidden="true"
               width={48}
               height={48}
-              className='mb-2'
+              className='mb-2 w-10 h-10 sm:w-12 sm:h-12 object-contain'
               />
-              <span className='text-sm font-medium'>{tech.name}</span>
+              <span className='text-xs sm:text-sm font-medium text-center'>{tech.name}</span>
             </Card>
           ))
         }

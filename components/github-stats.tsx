@@ -62,7 +62,7 @@ const GithubStats = ({ username }: Props) => {
   if (error) {
     return (
       <Card className="p-4 sm:p-6 bg-card border-border/5">
-        <p className="text-destructive">{error}</p>
+        <p className="text-destructive-text">{error}</p>
       </Card>
     );
   }
@@ -166,8 +166,19 @@ const GithubStats = ({ username }: Props) => {
         </div>
 
 <div className="space-y-4 w-full max-w-full min-w-0">
-<h4 className="text-sm font-medium text-muted-foreground">Last 30 days</h4>
-<div className="w-full max-w-full overflow-x-auto pb-4 scrollbar-thin">
+<div className="flex items-center justify-between">
+  <h4 className="text-sm font-medium text-muted-foreground">Last 30 days</h4>
+  <span className="text-xs text-muted-foreground font-mono">
+    {stats.contributions.slice(-30).reduce((acc, curr) => acc + curr.count, 0)} contributions
+  </span>
+</div>
+
+{/* Accessible textual summary for assistive technology (avoids 30 redundant tab stops) */}
+<p className="sr-only">
+  Activity breakdown for the last 30 days: {stats.contributions.slice(-30).reduce((acc, curr) => acc + curr.count, 0)} total contributions across {stats.contributions.slice(-30).filter(d => d.count > 0).length} active days, with a peak of {maxContributions} commits in a single day.
+</p>
+
+<div className="w-full max-w-full overflow-x-auto pb-4 scrollbar-thin" aria-hidden="true">
     <div className="grid grid-rows-1 grid-flow-col gap-1 w-max min-w-[560px] sm:min-w-[600px]">
     <TooltipProvider>
       {

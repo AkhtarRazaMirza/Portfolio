@@ -142,9 +142,12 @@ const ContactForm = () => {
 
         {/* User-friendly error message with mailto fallback */}
         {errorMessage && (
-          <div className="p-3.5 rounded-lg bg-destructive/10 border border-destructive/20 text-xs text-destructive flex flex-col gap-1.5">
+          <div
+            role="alert"
+            className="p-3.5 rounded-lg bg-destructive/10 border border-destructive/20 text-xs text-destructive-text flex flex-col gap-1.5"
+          >
             <div className="flex items-start gap-2 font-medium">
-              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-destructive-text" />
               <span className="leading-relaxed">{errorMessage}</span>
             </div>
             <p className="text-muted-foreground text-[11px] pl-6">
