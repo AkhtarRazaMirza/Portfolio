@@ -91,19 +91,29 @@ const Hero = () => {
             </motion.div>
 
             <motion.div
-             initial={{opacity:0 , x:20}}
-             animate={{opacity:1 , x:0}}
-             transition={{duration:0.5}}
-             className="flex justify-center"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="flex justify-center items-center"
             >
-                <Image 
-                src={"/hero.svg"}
-                alt=""
-                aria-hidden="true"
-                width={500}
-                height={500}
-                priority
+              <div className="relative group w-full max-w-[280px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[400px]">
+                {/* Subtle muted emerald ambient aura backdrop */}
+                <div
+                  className="absolute -inset-1.5 rounded-2xl bg-gradient-to-tr from-primary/20 via-emerald-500/10 to-primary/10 opacity-50 blur-xl transition-opacity duration-500 group-hover:opacity-75"
+                  aria-hidden="true"
                 />
+                {/* Portrait frame */}
+                <div className="relative aspect-[3/4] w-full rounded-2xl overflow-hidden border border-border/60 bg-card shadow-2xl transition-all duration-300 group-hover:border-primary/40">
+                  <Image
+                    src="/homepage-avatar.png"
+                    alt="Akhtar Raza — Full-Stack Developer"
+                    fill
+                    priority
+                    sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 360px, 400px"
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                  />
+                </div>
+              </div>
             </motion.div>
         </div>
     </section>
